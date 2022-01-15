@@ -3,6 +3,7 @@ body {font-family: "Lato", sans-serif;}
 
 /* Style the tab */
 .tab {
+  height: 100%;
   border: 1px solid #ccc;
   background-color: #fffefe;
 }
