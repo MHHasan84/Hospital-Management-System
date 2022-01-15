@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--doctorpage CSS-->
+    <link rel="stylesheet" href="doctorpage.css">
+  </head>
+  <body>
+    <h1 style="text-align: center;margin: 30px;">Hospital Management System (Doctors Page)</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'AppointmentList')" id="defaultOpen">Appointment List</button>
+                    <button class="tablinks" onclick="openCity(event, 'PatientList')">Patient List</button>
+                    <button class="tablinks" onclick="openCity(event, 'AdmittedPatient')">AdmittedPatient</button>
+                    <button class="tablinks" onclick="openCity(event, 'Operations')">Operations</button>
+                    <button class="tablinks" onclick="openCity(event, 'MedicalTest')">Medical Tests</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Schedule</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">My Information</button>
+                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Change Password</button>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div id="AppointmentList" class="tabcontent">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Appointment Id</th>
+                            <th>Patient Id</th>
+                            <th>Visit Date</th>
+                            <th>Visit Time</th>
+                            <th>Prescription</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div id="PatientList" class="tabcontent">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Contact Number</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Last Appointment</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    
+                        </tbody>
+                    </table> 
+                </div>
+            
+                <div id="AdmittedPatient" class="tabcontent">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Patient Id</th>
+                            <th>Appointment Id</th>
+                            <th>Admit date</th>
+                            <th>Release Date</th>
+                            <th>Ward</th>
+                            <th>Bed</th>
+                            <th>Prescription</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    
+                        </tbody>
+                    </table> 
+                </div>
+
+                <div id="Operations" class="tabcontent">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Patient Id</th>
+                            <th>Appointment Id</th>
+                            <th>Operation Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Room No</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    
+                        </tbody>
+                    </table> 
+                </div>
+                <div id="MedicalTest" class="tabcontent">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Patient Id</th>
+                            <th>Appointment Id</th>
+                            <th>Test Name</th>
+                            <th>Date</th>
+                            <th>Technitian Id</th>
+                            <th>Test Report</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+
+
+
+
+
+
+    <!--doctorpage javascript-->
+    <script src="doctorpage.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
