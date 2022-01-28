@@ -21,12 +21,12 @@ body {
   }
    
   .sidebar a.active {
-    background-color: #5b5e5c;
+    background-color: #1b201d;
     color: white;
   }
   
   .sidebar a:hover:not(.active) {
-    background-color: #555;
+    background-color: rgb(185, 189, 187);
     color: white;
   }
   

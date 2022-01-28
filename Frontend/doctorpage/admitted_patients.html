@@ -8,6 +8,38 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+        <style>
+            ul.breadcrumb {
+                padding: 10px 16px;
+                list-style: none;
+                background-color: rgb(255, 255, 255);
+            }
+    
+            /* Display list items side by side */
+            ul.breadcrumb li {
+                display: inline;
+                font-size: 18px;
+            }
+    
+            /* Add a slash symbol (/) before/behind each list item */
+            ul.breadcrumb li+li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+    
+            /* Add a color to all links inside the list */
+            ul.breadcrumb li a {
+                color: #0275d8;
+                text-decoration: none;
+            }
+    
+            /* Add a color on mouse-over */
+            ul.breadcrumb li a:hover {
+                color: #01447e;
+                text-decoration: underline;
+            }
+        </style>
 </head>
 
 <body>
@@ -25,8 +57,8 @@
     <div class="sidebar">
         <a href="profile.html">Profile</a>
         <a href="appointments.html">Appointments</a>
-        <a class="active" href="admitted_patients.html">Patients</a>
-        <a href="previous_patients.html">Surgeries</a>
+        <a class="active"  href="admitted_patients.html">Patients</a>
+        <a href="upcoming_surgeries.html">Surgeries</a>
         <a href="schedule.html">Schedule</a>
         <a href="notification.html">Notification</a>
     </div>
@@ -35,6 +67,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li>admitted</li>
+                        <li><a href="previous_patients.html">previous</a></li>
+                    </ul>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
