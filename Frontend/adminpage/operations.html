@@ -45,7 +45,7 @@
 <body>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <div class="navbar-brand">Receiptionist</div>
+        <div class="navbar-brand">Admin</div>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a href="#" class="nav-link">Logout</a>
@@ -55,12 +55,11 @@
 
 
     <div class="sidebar">
-        <a class="active" href="profile.html">Profile</a>
-        <a href="appointment.html">Appointments</a>
-        <a href="approve_appointment.html">Approve Services</a>
-        <a href="pending_services.html">Pending Services</a>
-        <a href="admit_patient_1.html">Admit Patients</a>
-        <a href="schedule.html">Schedule</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="doctors.html">Users</a>
+        <a class="active" href="tests.html">Services</a>
+        <a href="rooms.html">Accessories</a>
+        <a href="analytics.html">Analytics</a>
         <a href="notification.html">Notification</a>
     </div>
 
@@ -69,32 +68,32 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li><a href="approve_appointment.html">Appointments</a></li>
-                        <li>Test</li>
-                        <li><a href="approve_surgeries.html">Surgeries</a></li>
+                        <li><a href="tests.html">test</a></li>
+                        <li>surgeries</li>
                     </ul>
-                    <table class="table table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Serial No</th>
-                                <th>Patient Name</th>
-                                <th>Appointment Id</th>
-                                <th>Test Name</th>
-                                <th>Cost</th>
-                                <th>Approve</th>
-                            </tr>
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Room No</th>
+                            
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>patient-1</td>
-                                <td>A-1012</td>
-                                <td>Cityscan</td>
-                                <td>1500</td>
-                                <td><button class="btn btn-dark" type="submit">Approve</button></td>
-                            </tr>
+                          <tr>
+                            <td>Test-1</td>
+                            <td>Test-1-Name</td>
+                            <td>2002</td>
+                            
+                            <td><a href="#">edit</a></td>
+                            <td><button class="btn btn-dark">delete</button></td>
+                            
+                          </tr>
                         </tbody>
-                    </table>
+                      </table>
                 </div>
             </div>
         </div>
