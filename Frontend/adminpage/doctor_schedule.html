@@ -72,37 +72,59 @@
                         <li><a href="receiptionists.html">receiptionists</a></li>
                         <li><a href="technitians.html">technitians</a></li>
                     </ul>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-dark" type="submit">Search</button>
+                    <form action="">
+                        <div class="form-row">
+                            <div class="col-sm-3">
+                                <div class="form-group form-inline">
+                                    <label for="date" class="mr-2">Date</label>
+                                    <input type="date" id="date" class="form-control">
                                 </div>
                             </div>
+                            <div class="col-sm-2">
+                                <div class="form-group form-inline">
+                                    <label for="stime" class="mr-2">Start</label>
+                                    <input type="time" id="stime" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group form-inline">
+                                    <label for="etime" class="mr-2">End</label>
+                                    <input type="time" id="etime" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group form-inline">
+                                    <label for="whr" class="mr-2">Where</label>
+                                    <select class="form-control" id="whr">
+                                        <option>Chamber</option>
+                                        <option>Ward</option>
+                                        <option>Operation Theatre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-dark btn-block">Add Schedule</button>
+                            </div>
                         </div>
-                        <div class="col-sm-7"></div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-dark btn-block"><a style="color: inherit;text-decoration: none;" href="add_new_doctor.html">+ Add New</a></button>
-                        </div>
-                    </div>
+                    </form>
                     
                     <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>profile</th>
-                            <th>Schedule</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Place</th>
+                            <th>Cancel</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>D-1</td>
-                            <td>doctor1</td>
-                            <td><a href="#">profile</a></td>
-                            <td><a href="doctor_schedule.html">schedule</a></td>
-                            
+                            <td>14/1/2022</td>
+                            <td>16:00</td>
+                            <td>20:00</td>
+                            <td>Chamber</td>
+                            <td><button class="btn btn-dark">Cancel</button></td>
                           </tr>
                         </tbody>
                       </table>
