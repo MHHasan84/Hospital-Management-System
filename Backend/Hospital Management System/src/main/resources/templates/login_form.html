@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <style>
+        .center {
+            margin: auto;
+            width: 60%;
+            border: 3px solid #73AD21;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="navbar-brand">DB Project-Hospital Management System</div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5" style="padding-top: 8%;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><u>User Login</u></h5>
+                    <p class="card-text">
+                    <form action="">
+                        <div class="form-group">
+                            <label for="userid">Userid</label>
+                            <input type="text" id="userid" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">password</label>
+                            <input type="password" id="pwd" class="form-control">
+                        </div>
+                        <button class="btn btn-dark" type="submit">Login</button>
+                        <button class="btn btn-dark" type="submit">Sign Up</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
