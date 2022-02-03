@@ -30,17 +30,17 @@
                 <div class="card-body">
                     <h5 class="card-title"><u>User Login</u></h5>
                     <p class="card-text">
-                    <form action="">
+                    <form th:action="@{/users/login}" method="post" th:object="${user}">
                         <div class="form-group">
                             <label for="userid">Userid</label>
-                            <input type="text" id="userid" class="form-control">
+                            <input th:field="*{id}" type="text" id="userid" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="pwd">password</label>
-                            <input type="password" id="pwd" class="form-control">
+                            <input th:field="*{password}" type="password" id="pwd" class="form-control">
                         </div>
                         <button class="btn btn-dark" type="submit">Login</button>
-                        <button class="btn btn-dark" type="submit">Sign Up</button>
+                        <button class="btn btn-dark" type="button">Sign Up</button>
                     </form>
                     </p>
                 </div>

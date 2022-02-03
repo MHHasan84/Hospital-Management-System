@@ -28,4 +28,13 @@ public class User {
     public void setUsertype(String usertype) {
         this.usertype = usertype;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", usertype='" + usertype + '\'' +
+                '}';
+    }
 }
