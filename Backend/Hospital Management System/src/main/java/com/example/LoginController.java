@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 public class LoginController {
     UserDao2 userDao2=new UserDao2();
@@ -22,13 +24,17 @@ public class LoginController {
         return "temp";
     }
     @PostMapping("/users/login")
-    public String login(User user){
+    public String login(User user,Model model){
+        model.addAttribute("user",user);
         User user1=userDao2.getUser(user.getId());
         if(user1==null){
             return "login_form";
         }
         if(!user1.getPassword().equals(user.getPassword())){
             return "login_form";
+        }
+        if(user1.getUsertype().equals("0")){
+            return "redirect:/admin/dashboard";
         }
         if(user1.getUsertype().equals("1")){
             return "redirect:/doctor/profile/"+user.getId();
@@ -47,6 +53,28 @@ public class LoginController {
         return "login_form";
     }
 
+
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard(Model model){
+        return "admin_dashboard";
+    }
+
+    @GetMapping("/admin/user/doctor")
+    public String adminUserDoctor(Model model){
+        List<Doctor> doctorList=doctorDao.getAllDoctor();
+        model.addAttribute("doctor_list",doctorList);
+        model.addAttribute("user",new User());
+        return "admin_user_doctor";
+    }
+
+    @PostMapping("/admin/user/doctor/search")
+    public String adminUserDoctorBySearch(User user,Model model){
+        List<Doctor> doctorList=doctorDao.getAllDoctorById(user.getId());
+        model.addAttribute("user",user);
+        model.addAttribute("doctor_list",doctorList);
+        System.out.println(user.getId());
+        return "admin_user_doctor";
+    }
 
     @GetMapping("/doctor/profile/{id}")
     public String doctorProfile(@PathVariable("id") String id, Model model){
