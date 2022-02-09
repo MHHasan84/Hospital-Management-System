@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -74,6 +78,26 @@ public class LoginController {
         model.addAttribute("doctor_list",doctorList);
         System.out.println(user.getId());
         return "admin_user_doctor";
+    }
+
+     @GetMapping("/admin/add_doctor_form")
+     public String adminAddDoctorForm(Model model){
+        model.addAttribute("doctor",new Doctor());
+        return "admin_user_doctor_addnew";
+     }
+
+    @PostMapping("/admin/add_doctor")
+    public String adminAddDoctor(Doctor doctor,Model model) throws ParseException {
+        System.out.println("hasan");
+        model.addAttribute("doctor",doctor);
+        Date date=new SimpleDateFormat("MM-dd-yyyy").parse(doctor.getDate_of_birth());
+        System.out.println(date);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = dateFormat.format(date);
+        System.out.println(strDate);
+        doctorDao.insertDoctor(doctor);
+        //return "admin_user_doctor";
+        return "redirect:/admin/user/doctor";
     }
 
     @GetMapping("/doctor/profile/{id}")

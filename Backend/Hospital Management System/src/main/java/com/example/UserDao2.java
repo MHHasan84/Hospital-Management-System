@@ -67,7 +67,8 @@ public class UserDao2 {
         }
     }
 
-    public void addUser(String id,String password,String usertype) {
+    public boolean addUser(String id,String password,String usertype) {
+        boolean succeed=false;
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
@@ -80,6 +81,7 @@ public class UserDao2 {
                 String insertQuery = String.format(
                         "insert into users(id, password, user_type_id) values ('%s', '%s', '%s')", id, password, usertype);
                 oc.updateDB(insertQuery);
+                succeed=true;
             }
         }
         catch (Exception e) {
@@ -93,6 +95,7 @@ public class UserDao2 {
                 e.printStackTrace();
             }
         }
+        return succeed;
     }
 
     public void updateUser(String id,String password) {
