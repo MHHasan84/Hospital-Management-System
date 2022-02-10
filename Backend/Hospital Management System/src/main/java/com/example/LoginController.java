@@ -90,14 +90,23 @@ public class LoginController {
     public String adminAddDoctor(Doctor doctor,Model model) throws ParseException {
         System.out.println("hasan");
         model.addAttribute("doctor",doctor);
-        Date date=new SimpleDateFormat("MM-dd-yyyy").parse(doctor.getDate_of_birth());
-        System.out.println(date);
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String strDate = dateFormat.format(date);
-        System.out.println(strDate);
+        System.out.println(doctor.getDate_of_birth());
         doctorDao.insertDoctor(doctor);
         //return "admin_user_doctor";
         return "redirect:/admin/user/doctor";
+    }
+
+    @GetMapping("/admin/doctor/schedule/{id}")
+    public String adminDoctorSchedule(@PathVariable("id") String id,Model model){
+        model.addAttribute("doctorSchedule",new DoctorSchedule());
+        return "admin_doctor_schedule";
+    }
+
+    @PostMapping("/admin/doctor/add_schedule")
+    public String adminDoctorAddSchedule(DoctorSchedule doctorSchedule,Model model){
+        model.addAttribute("doctorSchedule",doctorSchedule);
+        System.out.println(doctorSchedule);
+        return "redirect:/admin/doctor/schedule";
     }
 
     @GetMapping("/doctor/profile/{id}")

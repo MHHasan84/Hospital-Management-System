@@ -34,8 +34,8 @@ public class UsersTest {
 
     @Test
     public void testGet(){
-        String id="t1";
-        System.out.println(technitianDao.getTechnitian(id));
+        String id="gg";
+        System.out.println(doctorDao.getDoctor(id).getDate_of_birth());
     }
     @Test
     public void testDelete(){
