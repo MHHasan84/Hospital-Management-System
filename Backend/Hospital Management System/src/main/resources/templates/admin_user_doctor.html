@@ -169,7 +169,7 @@
                             <td>[[${doctor.id}]]</td>
                             <td>[[${doctor.first_name}]]</td>
                             <td><a href="#">profile</a></td>
-                            <td><a href="admin_doctor_schedule.html">schedule</a></td>
+                            <td><a th:href="@{'/admin/doctor/schedule/'+${doctor.id}}">schedule</a></td>
                         </tr>
                     </th:block>
                     </tbody>

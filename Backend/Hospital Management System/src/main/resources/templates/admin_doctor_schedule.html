@@ -124,7 +124,7 @@
                     <li><a href="receiptionists.html">receiptionists</a></li>
                     <li><a href="technitians.html">technitians</a></li>
                 </ul>
-                <form th:action="@{/admin/doctor/add_schedule}" method="post" th:object="${doctorSchedule}">
+                <form th:action="@{'/admin/doctor/add_schedule/'+${doctorId}}" method="post" th:object="${doctorSchedule}">
                     <div class="form-row">
                         <div class="col-sm-3">
                             <div class="form-group form-inline">
@@ -171,13 +171,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>14/1/2022</td>
-                        <td>16:00</td>
-                        <td>20:00</td>
-                        <td>Chamber</td>
-                        <td><button class="btn btn-dark">Cancel</button></td>
-                    </tr>
+                    <th:block th:each="doctorSchedule:${doctorScheduleList}">
+                        <tr>
+                            <td>[[${doctorSchedule.schedule_date}]]</td>
+                            <td>[[${doctorSchedule.start_time}]]</td>
+                            <td>[[${doctorSchedule.end_time}]]</td>
+                            <td>[[${doctorSchedule.place}]]</td>
+                            <td><a th:href="@{'/admin/doctor/delete_schedule/'+${doctorSchedule.doctor_id}+'/'+${doctorSchedule.id}}"><button class="btn btn-dark">Cancel</button></a></td>
+                        </tr>
+                    </th:block>
                     </tbody>
                 </table>
             </div>

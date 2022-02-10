@@ -98,15 +98,29 @@ public class LoginController {
 
     @GetMapping("/admin/doctor/schedule/{id}")
     public String adminDoctorSchedule(@PathVariable("id") String id,Model model){
+        List<DoctorSchedule> doctorScheduleList=doctorDao.getAllSchedule(id);
+        model.addAttribute("doctorScheduleList",doctorScheduleList);
+        //DoctorSchedule doctorSchedule=new DoctorSchedule();
+        //doctorSchedule.setDoctor_id(id);
+        model.addAttribute("doctorId",id);
         model.addAttribute("doctorSchedule",new DoctorSchedule());
         return "admin_doctor_schedule";
     }
 
-    @PostMapping("/admin/doctor/add_schedule")
-    public String adminDoctorAddSchedule(DoctorSchedule doctorSchedule,Model model){
-        model.addAttribute("doctorSchedule",doctorSchedule);
+    @PostMapping("/admin/doctor/add_schedule/{doctorId}")
+    public String adminDoctorAddSchedule(@PathVariable("doctorId") String doctorId,DoctorSchedule doctorSchedule,Model model){
+        //model.addAttribute("doctorSchedule",doctorSchedule);
+        doctorSchedule.setDoctor_id(doctorId);
+        doctorDao.insertDoctorSchedule(doctorSchedule);
         System.out.println(doctorSchedule);
-        return "redirect:/admin/doctor/schedule";
+        return "redirect:/admin/doctor/schedule/"+doctorSchedule.getDoctor_id();
+    }
+
+    @GetMapping("/admin/doctor/delete_schedule/{doctorId}/{id}")
+    public String adminDoctorDeleteSchedule(@PathVariable("id") int id,@PathVariable("doctorId") String doctorId){
+        //model.addAttribute("doctorSchedule",doctorSchedule);
+        doctorDao.deleteDoctorSchedule(id);
+        return "redirect:/admin/doctor/schedule/"+doctorId;
     }
 
     @GetMapping("/doctor/profile/{id}")

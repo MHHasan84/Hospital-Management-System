@@ -1,11 +1,20 @@
 package com.example;
 
 public class DoctorSchedule {
+    private int id;
     private String doctor_id;
     private String schedule_date;
     private String start_time;
     private String end_time;
     private String place;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDoctor_id() {
         return doctor_id;

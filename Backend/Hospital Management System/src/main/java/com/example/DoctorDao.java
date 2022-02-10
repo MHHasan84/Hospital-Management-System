@@ -119,16 +119,17 @@ public class DoctorDao {
         return doctorList;
     }
 
-    public List<DoctorSchedule> getAllSchedule(int doctorId){
+    public List<DoctorSchedule> getAllSchedule(String doctorId){
         List<DoctorSchedule> doctorScheduleList=new ArrayList<>();
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
-            String query = String.format("select * from doctor_schedule where id='%s'",doctorId);
+            String query = String.format("select * from doctor_schedule where doctor_id='%s'",doctorId);
             ResultSet rs = oc.searchDB(query);
             while (rs.next()){
                 DoctorSchedule doctorSchedule=new DoctorSchedule();
-
+                doctorSchedule.setId(rs.getInt("id"));
+                doctorSchedule.setDoctor_id(doctorId);
                 doctorSchedule.setSchedule_date(rs.getString("schedule_date"));
                 doctorSchedule.setStart_time(rs.getString("start_time"));
                 doctorSchedule.setEnd_time(rs.getString("end_time"));
@@ -162,6 +163,29 @@ public class DoctorDao {
         }
         catch (Exception e) {
             System.out.println("Exception in addDoctorSchedule: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void deleteDoctorSchedule(int id){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            /*String deleteQuery=String.format("delete from doctor_schedule where doctor_id='%s' and schedule_date='%s' and " +
+                    "start_time='%s' and end_time='%s' and place='%s'",doctorSchedule.getDoctor_id(),doctorSchedule.getSchedule_date(),
+                    doctorSchedule.getStart_time(),doctorSchedule.getEnd_time(),doctorSchedule.getPlace());*/
+            String deleteQuery=String.format("delete from doctor_schedule where id='%d'",id);
+            oc.updateDB(deleteQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in deleteDoctorSchedule: " + e);
         }
         finally {
             try {

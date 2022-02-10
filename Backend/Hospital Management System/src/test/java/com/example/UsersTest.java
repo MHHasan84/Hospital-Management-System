@@ -39,8 +39,13 @@ public class UsersTest {
     }
     @Test
     public void testDelete(){
-        String id="d2";
-        userDao2.deleteUser(id);
+        DoctorSchedule doctorSchedule=new DoctorSchedule();
+        doctorSchedule.setDoctor_id("d1");
+        doctorSchedule.setSchedule_date("date");
+        doctorSchedule.setStart_time("start_time");
+        doctorSchedule.setEnd_time("end_time");
+        doctorSchedule.setPlace("place");
+
     }
 
 }
