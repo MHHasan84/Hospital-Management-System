@@ -54,7 +54,17 @@ public class DoctorDao {
             if (rs.next()) {
                 doctor.setId(rs.getString("id"));
                 doctor.setFirst_name(rs.getString("first_name"));
-                doctor.setDate_of_birth(String.valueOf(rs.getDate("date_of_birth")));
+                doctor.setLast_name(rs.getString("last_name"));
+                doctor.setDate_of_birth(rs.getString("date_of_birth"));
+                doctor.setAddress(rs.getString("address"));
+                doctor.setPhone_no(rs.getString("phone_no"));
+                doctor.setEmail(rs.getString("email"));
+                doctor.setGender(rs.getString("gender"));
+                doctor.setDepartment_name(rs.getString("department_name"));
+                doctor.setDesignation(rs.getString("designation"));
+                doctor.setQualification(rs.getString("qualification"));
+                doctor.setChamber(rs.getString("chamber"));
+                doctor.setVisiting_fee(rs.getInt("visiting_fee"));
             }
             else {
                 System.out.println("No doctor in this id");

@@ -199,9 +199,11 @@
                                     <div class="form-group">
                                         <label for="dept">Department</label>
                                         <select th:field="*{department_name}" class="form-control" id="dept">
-                                            <option th:value="Cardiology">Cardiology</option>
-                                            <option th:value="Hematology">Hematology</option>
-                                            <option th:value="Neurology">Neurology</option>
+                                            <option value=""> -- </option>
+                                            <option th:each="department : ${departmentList}"
+                                                    th:value="${department.department_name}"
+                                                    th:utext="${department.department_name}">
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -233,11 +235,13 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="chmb">Chamber</label>
-                                        <select th:field="*{chamber}" class="form-control" id="chmb">
-                                            <option th:value="1001">1001</option>
-                                            <option th:value="1002">1002</option>
-                                            <option th:value="1003">1003</option>
+                                        <label for="chamber">Chamber</label>
+                                        <select th:field="*{chamber}" class="form-control" id="chamber">
+                                            <option value=""> -- </option>
+                                            <option th:each="room : ${roomList}"
+                                                    th:value="${room.room_no}"
+                                                    th:utext="${room.room_no}">
+                                            </option>
                                         </select>
                                     </div>
                                 </div>

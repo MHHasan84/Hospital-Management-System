@@ -71,25 +71,40 @@
                         <li><a href="tests.html">test</a></li>
                         <li>surgeries</li>
                     </ul>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-dark" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-dark btn-block"><a style="color: inherit;text-decoration: none;" href="add_new_operation.html">+ Add New Operation</a></button>
+                        </div>
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th>Id</th>
-                            <th>Name</th>
+                            <th>Operation Id</th>
+                            <th>Operation Name</th>
                             <th>Room No</th>
-                            
+                            <th>Cost</th>
+                            <th>Status</th>
                             <th>Edit</th>
-                            <th>Delete</th>
+                                               
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Test-1</td>
-                            <td>Test-1-Name</td>
+                            <td>Operation-1</td>
+                            <td>Operation-1-Name</td>
                             <td>2002</td>
-                            
-                            <td><a href="#">edit</a></td>
-                            <td><button class="btn btn-dark">delete</button></td>
+                            <td>2000</td>
+                            <td><u>available</u></td>
+                            <td><a href="edit_operatioon.html">edit</a></td>
                             
                           </tr>
                         </tbody>

@@ -107,9 +107,9 @@
 
 
 <div class="sidebar">
-    <a th:href="@{/admin/dashboard}">Dashboard</a>
-    <a class="active" th:href="@{/admin/user/doctor}">Users</a>
-    <a href="tests.html">Services</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="doctors.html">Users</a>
+    <a class="active" href="tests.html">Services</a>
     <a href="rooms.html">Accessories</a>
     <a href="analytics.html">Analytics</a>
     <a href="notification.html">Notification</a>
@@ -120,59 +120,43 @@
         <div class="row">
             <div class="col-sm-12">
                 <ul class="breadcrumb">
-                    <li>doctors</li>
-                    <li><a href="receiptionists.html">receiptionists</a></li>
-                    <li><a href="technitians.html">technitians</a></li>
+                    <li>test</li>
+                    <li><a href="operations.html">surgeries</a></li>
                 </ul>
                 <div class="row">
                     <div class="col-sm-3">
-<!--                        <form th:action="@{/users/login}" method="post">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="userid">Userid</label>-->
-<!--                                <input th:field="${user.id}" type="text" id="userid" class="form-control" value="hasan">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="pwd">password</label>-->
-<!--                                <input th:field="${user.password}" type="password" id="pwd" class="form-control" value="hasan">-->
-<!--                            </div>-->
-<!--                            <button class="btn btn-dark" type="submit">Login</button>-->
-<!--                            <button class="btn btn-dark" type="button">Sign Up</button>-->
-<!--                        </form>-->
-                        <form th:action="@{/admin/user/doctor/search}" method="post" th:object="${user}">
-                            <div class="input-group mb-3">
-                                <input th:field="*{id}" type="text" class="form-control" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-dark" type="submit">Search</button>
-                                </div>
-                            </div>
-                        </form>
+                        <a th:href="@{/admin/service/test/add/form}">
+                            <button class="btn btn-dark my-2">Add New Test</button>
+                        </a>
+                    </div>
 
-                    </div>
-                    <div class="col-sm-7"></div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-dark btn-block"><a style="color: inherit;text-decoration: none;" th:href="@{/admin/add_doctor_form}">+ Add New</a></button>
-                    </div>
                 </div>
-
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>profile</th>
-                        <th>Schedule</th>
+                        <th>Test Id</th>
+                        <th> Test Name</th>
+                        <th>Room No</th>
+                        <th>Tecnitian id</th>
+                        <th>Cost</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+
                     </tr>
                     </thead>
-                    <tbody>
-                    <th:block th:each="doctor:${doctor_list}">
+                    <th:block>
+                        <tbody th:each="test:${testList}">
                         <tr>
-                            <td>[[${doctor.id}]]</td>
-                            <td>[[${doctor.first_name}]]</td>
-                            <td><a th:href="@{'/admin/doctor/profile/'+${doctor.id}}">profile</a></td>
-                            <td><a th:href="@{'/admin/doctor/schedule/'+${doctor.id}}">schedule</a></td>
+                            <td>[[${test.id}]]</td>
+                            <td>[[${test.test_name}]]</td>
+                            <td>[[${test.room_no}]]</td>
+                            <td>[[${test.technitian_id}]]</td>
+                            <td>[[${test.cost}]]</td>
+                            <td><u>[[${test.status}]]</u></td>
+                            <td><a th:href="'/admin/service/test/edit/form/'+${test.id}">edit</a></td>
                         </tr>
+                        </tbody>
                     </th:block>
-                    </tbody>
                 </table>
             </div>
         </div>

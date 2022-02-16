@@ -90,76 +90,79 @@
             <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">
-                        Profile
+                        <b>Profile</b>
                     </div>
                     <div class="card-body">
                         <div class="card-text">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Name
+                                    <b>Name</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.first_name}]]</div>
+                                <div class="col-sm-8">[[${doctor.first_name}]] [[${doctor.last_name}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Email
+                                    <b>Email</b>
                                 </div>
-                                <div class="col-sm-8">doctor-1@gmail.com</div>
+                                <div class="col-sm-8">[[${doctor.email}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Address
+                                    <b>Address</b>
                                 </div>
-                                <div class="col-sm-8">adress of doctor-1</div>
+                                <div class="col-sm-8">[[${doctor.address}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Phone No
+                                    <b>Phone No</b>
                                 </div>
-                                <div class="col-sm-8">0123456789</div>
+                                <div class="col-sm-8">[[${doctor.phone_no}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Date of Birth
+                                    <b>Date of birth</b>
                                 </div>
-                                <div class="col-sm-8">1/1/1990</div>
+                                <div class="col-sm-8">[[${doctor.date_of_birth}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Gender
+                                    <b>Gender</b>
                                 </div>
-                                <div class="col-sm-8">Male</div>
+                                <div class="col-sm-8">[[${doctor.gender}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Department
+                                    <b>Department</b>
                                 </div>
-                                <div class="col-sm-8">cardiology</div>
+                                <div class="col-sm-8">[[${doctor.department_name}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Designation
+                                    <b>Designation</b>
                                 </div>
-                                <div class="col-sm-8">specialist</div>
+                                <div class="col-sm-8">[[${doctor.designation}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Qualification
+                                    <b>Qualification</b>
                                 </div>
-                                <div class="col-sm-8">MBBS, FCPS</div>
+                                <div class="col-sm-8">[[${doctor.qualification}]]</div>
                             </div>
 
                         </div>
 
                     </div>
+                    <!--<a th:href="@{'/admin/doctor/edit_form/'+${doctor.id}}">
+                        <button class="btn btn-dark btn-block">Edit</button>
+                    </a>-->
 
                 </div>
             </div>

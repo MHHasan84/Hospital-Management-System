@@ -11,12 +11,14 @@ public class UsersTest {
     private PatientDao patientDao=new PatientDao();
     private TechnitianDao technitianDao=new TechnitianDao();
     private ReceiptionistDao receiptionistDao=new ReceiptionistDao();
+    private AdminDao adminDao=new AdminDao();
+    private TestDao testDao=new TestDao();
     @Test
     public void testAddNew(){
-        String id="d2";
-        String password="d2pass";
-        String usertype="1";
-        userDao2.addUser(id,password,usertype);
+        com.example.Test test=new com.example.Test();
+        test.setId("a");
+        test.setStatus("ab");
+        testDao.updateTest("a",test);
     }
 
     @Test
@@ -29,13 +31,12 @@ public class UsersTest {
 
     @Test
     public void testGetAll(){
-        userDao2.listUsers();
+        System.out.println(testDao.getAllTest());
     }
 
     @Test
     public void testGet(){
-        String id="gg";
-        System.out.println(doctorDao.getDoctor(id).getDate_of_birth());
+        System.out.println(testDao.getTest("1"));
     }
     @Test
     public void testDelete(){
