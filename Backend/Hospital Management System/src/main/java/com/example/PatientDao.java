@@ -28,4 +28,30 @@ public class PatientDao {
         }
         return patient;
     }
+
+    public void insertAppointment(Appointment appointment){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String insertQuery=String.format(
+                    "insert into appointments(doctor_id,patient_id,schedule_id," +
+                            "appointment_date,visiting_date,status,prescription)" +
+                            " values('%s','%s','%d','%s','%s','%s','%s')", appointment.getDoctor_id(),
+                    appointment.getPatient_id(), appointment.getSchedule_id(), appointment.getAppointment_date(),
+                    appointment.getVisiting_date(), appointment.getStatus(),prs
+            );
+            oc.updateDB(insertQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in addTest: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

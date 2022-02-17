@@ -125,8 +125,8 @@
                 </ul>
                 <div class="row">
                     <div class="col-sm-3">
-                        <a th:href="@{/admin/ward/add/form}">
-                            <button class="btn btn-dark my-2">Add New Ward</button>
+                        <a th:href="@{/admin/bed/add/form}">
+                            <button class="btn btn-dark my-2">Add New Bed</button>
                         </a>
                     </div>
 
@@ -134,21 +134,17 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Ward No</th>
-                        <th> Ward Type</th>
-                        <th>Room No</th>
-                        <th>Cost Per Bed</th>
+                        <th>Bed No</th>
+                        <th> Ward No</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
                     <th:block>
-                        <tbody th:each="ward:${wardList}">
+                        <tbody th:each="bed:${bedList}">
                         <tr>
-                            <td>[[${ward.ward_no}]]</td>
-                            <td>[[${ward.ward_type}]]</td>
-                            <td>[[${ward.room_no}]]</td>
-                            <td>[[${ward.cost_per_bd}]]</td>
-                            <td><a th:href="'/admin/ward/edit/form/'+${ward.ward_no}">edit</a></td>
+                            <td>[[${bed.bed_no}]]</td>
+                            <td>[[${bed.ward_no}]]</td>
+                            <td><a th:href="'/admin/bed/edit/form/'+${bed.bed_no}">edit</a></td>
                         </tr>
                         </tbody>
                     </th:block>

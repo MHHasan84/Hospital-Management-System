@@ -122,15 +122,15 @@
             <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">
-                        <b style="text-align: center;">Add New Test</b>
+                        <b style="text-align: center;">Edit Test</b>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/admin/ward/add}" method="post" th:object="${ward}">
+                        <form th:action="'/admin/ward/edit/'+${ward.ward_no}" method="post" th:object="${ward}">
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="fname">Ward No:</label>
-                                        <input th:field="*{ward_no}" type="text" class="form-control" id="fname">
+                                        <label for="fname">Test Id:</label>
+                                        <input th:field="*{ward_no}" disabled type="text" class="form-control" id="fname">
                                     </div>
                                 </div>
 

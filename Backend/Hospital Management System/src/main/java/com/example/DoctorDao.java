@@ -203,4 +203,30 @@ public class DoctorDao {
             }
         }
     }
+
+    public void updateDoctor(String id,Doctor doctor){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String updateQuery=String.format(
+                    "update doctors set address='%s',phone_no='%s',designation='%s'," +
+                            "qualification=%s,chamber='%s',visiting_fee='%s'," +
+                            "email='%s' where id='%s'",doctor.getAddress(),
+                    doctor.getPhone_no(),doctor.getDesignation(),doctor.getQualification(),
+                    doctor.getChamber(), doctor.getVisiting_fee(), doctor.getEmail(),id
+            );
+            oc.updateDB(updateQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in updateDoctor: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

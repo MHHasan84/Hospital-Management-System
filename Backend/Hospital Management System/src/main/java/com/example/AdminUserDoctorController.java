@@ -74,5 +74,17 @@ public class AdminUserDoctorController {
         return "doctor_profile";
     }
 
+    @GetMapping("/admin/doctor/edit/form/{id}")
+    public String adminServiceTestEditForm(@PathVariable("id") String id,Model model){
+        Doctor doctor= doctorDao.getDoctor(id);
+        model.addAttribute("doctor",doctor);
+        return "admin_doctor_edit_form";
+    }
+
+    @PostMapping("/admin/doctor/edit/{id}")
+    public String adminServiceTestEdit(@PathVariable("id") String id,Doctor doctor){
+        doctorDao.updateDoctor(id,doctor);
+        return "redirect:/admin/user/doctor";
+    }
 
 }

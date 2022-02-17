@@ -122,15 +122,15 @@
             <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">
-                        <b style="text-align: center;">Add New Test</b>
+                        <b style="text-align: center;">Add New Bed</b>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/admin/ward/add}" method="post" th:object="${ward}">
+                        <form th:action="@{/admin/bed/add}" method="post" th:object="${bed}">
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="fname">Ward No:</label>
-                                        <input th:field="*{ward_no}" type="text" class="form-control" id="fname">
+                                        <label for="fname">Bed No:</label>
+                                        <input th:field="*{bed_no}" type="text" class="form-control" id="fname">
                                     </div>
                                 </div>
 
@@ -138,38 +138,10 @@
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="userid">Ward Type:</label>
-                                        <select th:field="*{ward_type}" class="form-control" id="userid">
-                                            <option th:value="CAUSALITY">CAUSALITY</option>
-                                            <option th:value="GENERAL_WARD">GENERAL WARD</option>
-                                            <option th:value="SEMI-SPECIAL_ROOM">SEMI-SPECIAL ROOM</option>
-                                            <option th:value="SPECIAL_WARDS">SPECIAL WARDS</option>
-                                            <option th:value="DELUXE_ROOM">DELUXE ROOM</option>
-                                            <option th:value="CCU">CCU</option>
-                                            <option th:value="ICCU">ICCU</option>
-                                            <option th:value="SICU">SICU</option>
-                                            <option th:value="BURN_WARD">BURN WARD</option>
-                                            <option th:value="NICU">NICU</option>
-                                            <option th:value="PICU">PICU</option>
+                                        <label for="userid">Ward No:</label>
+                                        <select th:field="*{ward_no}" class="form-control" id="userid">
+                                            <option th:each="ward:${wardList}" th:value="${ward.ward_no}" th:text="${ward.ward_no}"></option>
                                         </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-row my-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="room">Room No:</label>
-                                        <input th:field="*{room_no}" type="text" class="form-control" id="room">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-row my-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="dob">Cost Per Bed:</label>
-                                        <input th:field="*{cost_per_bd}" type="number" class="form-control" id="dob">
                                     </div>
                                 </div>
 
