@@ -28,7 +28,7 @@ public class AdminServiceTestController {
     }
 
     @PostMapping("/admin/service/test/add")
-    public String adminServiceAdd(Test test){
+    public String adminServiceTestAdd(Test test){
         testDao.insertTest(test);
         return "redirect:/admin/service/test";
     }
@@ -41,7 +41,7 @@ public class AdminServiceTestController {
     }
 
     @PostMapping("/admin/service/test/edit/{id}")
-    public String adminServiceAdd(@PathVariable("id") String testId,Test test){
+    public String adminServiceTestEdit(@PathVariable("id") String testId,Test test){
         testDao.updateTest(testId,test);
         return "redirect:/admin/service/test";
     }

@@ -65,7 +65,7 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <div class="navbar-brand">Technitian</div>
+    <div class="navbar-brand">Doctor</div>
     <ul class="navbar-nav">
         <li class="nav-item">
             <a href="#" class="nav-link">Logout</a>
@@ -76,7 +76,9 @@
 
 <div class="sidebar">
     <a class="active" href="profile.html">Profile</a>
-    <a href="pending_test.html">Pending Test</a>
+    <a href="appointments.html">Appointments</a>
+    <a href="admitted_patients.html">Patients</a>
+    <a href="upcoming_surgeries.html">Surgeries</a>
     <a href="schedule.html">Schedule</a>
     <a href="notification.html">Notification</a>
 </div>
@@ -88,54 +90,73 @@
             <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">
-                        Profile
+                        <b>Profile</b>
                     </div>
                     <div class="card-body">
                         <div class="card-text">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Name
+                                    <b>Name</b>
                                 </div>
-                                <div class="col-sm-8">[[${technitian.name}]]</div>
+                                <div class="col-sm-8">[[${receptionist.first_name}]] [[${receptionist.last_name}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Email
+                                    <b>Email</b>
                                 </div>
-                                <div class="col-sm-8">technitian-1@gmail.com</div>
+                                <div class="col-sm-8">[[${receptionist.email}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Address
+                                    <b>Address</b>
                                 </div>
-                                <div class="col-sm-8">adress of technitian-1</div>
+                                <div class="col-sm-8">[[${receptionist.address}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Phone No
+                                    <b>Phone No</b>
                                 </div>
-                                <div class="col-sm-8">0123456789</div>
+                                <div class="col-sm-8">[[${receptionist.phone_no}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Date of Birth
+                                    <b>Date of birth</b>
                                 </div>
-                                <div class="col-sm-8">1/1/1990</div>
+                                <div class="col-sm-8">[[${receptionist.date_of_birth}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Gender
+                                    <b>Gender</b>
                                 </div>
-                                <div class="col-sm-8">Male</div>
+                                <div class="col-sm-8">[[${receptionist.gender}]]</div>
                             </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Designation</b>
+                                </div>
+                                <div class="col-sm-8">[[${receptionist.designation}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Qualification</b>
+                                </div>
+                                <div class="col-sm-8">[[${receptionist.qualification}]]</div>
+                            </div>
+
                         </div>
 
                     </div>
+                    <!--<a th:href="@{'/admin/doctor/edit_form/'+${doctor.id}}">
+                        <button class="btn btn-dark btn-block">Edit</button>
+                    </a>-->
 
                 </div>
             </div>

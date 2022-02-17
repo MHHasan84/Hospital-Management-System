@@ -1,6 +1,5 @@
 package com.example;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,7 +8,7 @@ public class UsersTest {
     private UserDao2 userDao2=new UserDao2();
     private DoctorDao doctorDao=new DoctorDao();
     private PatientDao patientDao=new PatientDao();
-    private ReceiptionistDao receiptionistDao=new ReceiptionistDao();
+    private ReceptionistDao receptionistDao =new ReceptionistDao();
     private AdminDao adminDao=new AdminDao();
     private TestDao testDao=new TestDao();
     private TechnicianDao technicianDao=new TechnicianDao();

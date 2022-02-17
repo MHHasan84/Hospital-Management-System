@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #1b201d;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: rgb(185, 189, 187);
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar a {float: left;}
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        ul.breadcrumb {
+            padding: 10px 16px;
+            list-style: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        /* Display list items side by side */
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        /* Add a slash symbol (/) before/behind each list item */
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+        /* Add a color to all links inside the list */
+        ul.breadcrumb li a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+
+        /* Add a color on mouse-over */
+        ul.breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="navbar-brand">Admin</div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="nav-link">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="sidebar">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="doctors.html">Users</a>
+    <a class="active" href="tests.html">Services</a>
+    <a href="rooms.html">Accessories</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="notification.html">Notification</a>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="breadcrumb">
+                    <li>test</li>
+                    <li><a href="operations.html">surgeries</a></li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <a th:href="@{/admin/ward/add/form}">
+                            <button class="btn btn-dark my-2">Add New Ward</button>
+                        </a>
+                    </div>
+
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Ward No</th>
+                        <th> Ward Type</th>
+                        <th>Room No</th>
+                        <th>Cost Per Bed</th>
+
+                    </tr>
+                    </thead>
+                    <th:block>
+                        <tbody th:each="ward:${wardList}">
+                        <tr>
+                            <td>[[${ward.ward_no}]]</td>
+                            <td>[[${ward.ward_type}]]</td>
+                            <td>[[${ward.room_no}]]</td>
+                            <td>[[${ward.cost_per_bed}]]</td>
+                            <td><a th:href="'/admin/ward/edit/form/'+${ward.ward_no}">edit</a></td>
+                        </tr>
+                        </tbody>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
