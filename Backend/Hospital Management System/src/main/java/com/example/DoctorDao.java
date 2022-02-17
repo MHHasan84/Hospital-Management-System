@@ -188,9 +188,6 @@ public class DoctorDao {
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
-            /*String deleteQuery=String.format("delete from doctor_schedule where doctor_id='%s' and schedule_date='%s' and " +
-                    "start_time='%s' and end_time='%s' and place='%s'",doctorSchedule.getDoctor_id(),doctorSchedule.getSchedule_date(),
-                    doctorSchedule.getStart_time(),doctorSchedule.getEnd_time(),doctorSchedule.getPlace());*/
             String deleteQuery=String.format("delete from doctor_schedule where id='%d'",id);
             oc.updateDB(deleteQuery);
         }

@@ -73,4 +73,6 @@ public class AdminUserDoctorController {
         model.addAttribute("doctor",doctor);
         return "doctor_profile";
     }
+
+
 }

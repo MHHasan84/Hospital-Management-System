@@ -19,7 +19,7 @@ public class LoginController {
     UserDao2 userDao2=new UserDao2();
     DoctorDao doctorDao=new DoctorDao();
     PatientDao patientDao=new PatientDao();
-    TechnitianDao technitianDao=new TechnitianDao();
+    TechnicianDao technicianDao=new TechnicianDao();
     AdminDao adminDao=new AdminDao();
     @GetMapping("/users/show/{id}")
     public String showLogin(@PathVariable("id") String id, Model model){
