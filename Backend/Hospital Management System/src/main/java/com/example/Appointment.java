@@ -6,9 +6,8 @@ public class Appointment {
     private String patient_id;
     private int schedule_id;
     private String appointment_date;
-    private String visiting_date;
     private String status;
-    private String prescription;
+    private int prescription_id;
 
     public int getAppointment_id() {
         return appointment_id;
@@ -50,13 +49,6 @@ public class Appointment {
         this.appointment_date = appointment_date;
     }
 
-    public String getVisiting_date() {
-        return visiting_date;
-    }
-
-    public void setVisiting_date(String visiting_date) {
-        this.visiting_date = visiting_date;
-    }
 
     public String getStatus() {
         return status;
@@ -66,12 +58,12 @@ public class Appointment {
         this.status = status;
     }
 
-    public String getPrescription() {
-        return prescription;
+    public int getPrescription_id() {
+        return prescription_id;
     }
 
-    public void setPrescription(String prescription) {
-        this.prescription = prescription;
+    public void setPrescription_id(int prescription_id) {
+        this.prescription_id = prescription_id;
     }
 
     @Override
@@ -82,9 +74,8 @@ public class Appointment {
                 ", patient_id='" + patient_id + '\'' +
                 ", schedule_id=" + schedule_id +
                 ", appointment_date='" + appointment_date + '\'' +
-                ", visiting_date='" + visiting_date + '\'' +
                 ", status='" + status + '\'' +
-                ", prescription='" + prescription + '\'' +
+                ", prescription_id=" + prescription_id +
                 '}';
     }
 }

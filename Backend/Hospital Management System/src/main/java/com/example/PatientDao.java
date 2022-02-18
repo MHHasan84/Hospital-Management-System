@@ -1,6 +1,8 @@
 package com.example;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientDao {
     public Patient getPatient(String id){
@@ -35,15 +37,15 @@ public class PatientDao {
             oc = new OracleConnect();
             String insertQuery=String.format(
                     "insert into appointments(doctor_id,patient_id,schedule_id," +
-                            "appointment_date,visiting_date,status,prescription)" +
-                            " values('%s','%s','%d','%s','%s','%s','%s')", appointment.getDoctor_id(),
+                            "appointment_date,status,prescription_id)" +
+                            " values('%s','%s','%d','%s','%s',%d)", appointment.getDoctor_id(),
                     appointment.getPatient_id(), appointment.getSchedule_id(), appointment.getAppointment_date(),
-                    appointment.getVisiting_date(), appointment.getStatus(),prs
+                    appointment.getStatus(), appointment.getPrescription_id()
             );
             oc.updateDB(insertQuery);
         }
         catch (Exception e) {
-            System.out.println("Exception in addTest: " + e);
+            System.out.println("Exception in addAppointment: " + e);
         }
         finally {
             try {
@@ -53,5 +55,36 @@ public class PatientDao {
                 e.printStackTrace();
             }
         }
+    }
+
+    public List<Appointment> getAllAppointments(String patientId){
+        List<Appointment> appointmentList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from appointments where patient_id='%s'",patientId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                Appointment appointment=new Appointment();
+                appointment.setAppointment_id(rs.getInt("appointment_id"));
+                appointment.setDoctor_id(rs.getString("doctor_id"));
+                appointment.setPatient_id(rs.getString("patient_id"));
+                appointment.setSchedule_id(rs.getInt("schedule_id"));
+                appointment.setAppointment_date(rs.getString("appointment_date"));
+                appointment.setStatus(rs.getString("status"));
+                appointment.setPrescription_id(rs.getInt("prescription_id"));
+
+                appointmentList.add(appointment);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllAppointment: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return appointmentList;
     }
 }

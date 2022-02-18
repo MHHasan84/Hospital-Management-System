@@ -91,6 +91,18 @@ public class DoctorDao {
             while (rs.next()){
                 Doctor doctor=new Doctor();
                 doctor.setId(rs.getString("id"));
+                doctor.setFirst_name(rs.getString("first_name"));
+                doctor.setLast_name(rs.getString("last_name"));
+                doctor.setDate_of_birth(rs.getString("date_of_birth"));
+                doctor.setAddress(rs.getString("address"));
+                doctor.setPhone_no(rs.getString("phone_no"));
+                doctor.setEmail(rs.getString("email"));
+                doctor.setGender(rs.getString("gender"));
+                doctor.setDesignation(rs.getString("designation"));
+                doctor.setQualification(rs.getString("qualification"));
+                doctor.setVisiting_fee(rs.getInt("visiting_fee"));
+                doctor.setDepartment_name(rs.getString("department_name"));
+
                 doctorList.add(doctor);
             }
         } catch (Exception e) {
@@ -148,7 +160,7 @@ public class DoctorDao {
                 doctorScheduleList.add(doctorSchedule);
             }
         } catch (Exception e) {
-            System.out.println("Exception in getDoctorSchedule: " + e);
+            System.out.println("Exception in getAllSchedule: " + e);
         } finally {
             try {
                 oc.close();
@@ -157,6 +169,33 @@ public class DoctorDao {
             }
         }
         return doctorScheduleList;
+    }
+
+    public DoctorSchedule getDoctorSchedule(int scheduleId){
+        DoctorSchedule doctorSchedule=new DoctorSchedule();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from doctor_schedule where schedule_id=%d",scheduleId);
+            ResultSet rs = oc.searchDB(query);
+            if (rs.next()){
+                doctorSchedule.setId(rs.getInt("id"));
+                doctorSchedule.setDoctor_id(rs.getString("doctor_id"));
+                doctorSchedule.setSchedule_date(rs.getString("schedule_date"));
+                doctorSchedule.setStart_time(rs.getString("start_time"));
+                doctorSchedule.setEnd_time(rs.getString("end_time"));
+                doctorSchedule.setPlace(rs.getString("place"));
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getDoctorSchedule: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return doctorSchedule;
     }
 
     public void insertDoctorSchedule(DoctorSchedule doctorSchedule){
