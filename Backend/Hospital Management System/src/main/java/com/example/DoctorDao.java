@@ -176,7 +176,7 @@ public class DoctorDao {
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
-            String query = String.format("select * from doctor_schedule where schedule_id=%d",scheduleId);
+            String query = String.format("select * from doctor_schedule where id=%d",scheduleId);
             ResultSet rs = oc.searchDB(query);
             if (rs.next()){
                 doctorSchedule.setId(rs.getInt("id"));

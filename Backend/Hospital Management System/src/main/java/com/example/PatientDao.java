@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDao {
+    DoctorDao doctorDao=new DoctorDao();
     public Patient getPatient(String id){
         Patient patient=new Patient();
         OracleConnect oc = null;
@@ -73,6 +74,12 @@ public class PatientDao {
                 appointment.setAppointment_date(rs.getString("appointment_date"));
                 appointment.setStatus(rs.getString("status"));
                 appointment.setPrescription_id(rs.getInt("prescription_id"));
+
+                Doctor doctor= doctorDao.getDoctor(appointment.getDoctor_id());
+                DoctorSchedule doctorSchedule= doctorDao.getDoctorSchedule(appointment.getSchedule_id());
+                appointment.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                appointment.setVisiting_date(doctorSchedule.getSchedule_date());
+                appointment.setVisiting_time(doctorSchedule.getStart_time()+" - "+doctorSchedule.getEnd_time());
 
                 appointmentList.add(appointment);
             }

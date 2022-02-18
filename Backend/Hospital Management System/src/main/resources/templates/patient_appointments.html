@@ -128,20 +128,23 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Make Appointment</th>
-                        <th>Cancel</th>
+                        <th>Doctor's Name</th>
+                        <th>Appointment Date</th>
+                        <th>Visiting Date</th>
+                        <th>Visiting Time</th>
+                        <th>status</th>
+                        <th>Prescription</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="doctorSchedule:${doctorScheduleList}">
+                    <th:block th:each="appointment:${appointmentList}">
                         <tr>
-                            <td>[[${doctorSchedule.schedule_date}]]</td>
-                            <td>[[${doctorSchedule.start_time}]]</td>
-                            <td>[[${doctorSchedule.end_time}]]</td>
-                            <td><a th:href="@{'/patient/'+${patientId}+'/add_appointment/'+${doctorSchedule.doctor_id}+'/'+${doctorSchedule.id}}"><button class="btn btn-dark">Confirm Appointment</button></a></td>
+                            <td>[[${appointment.doctor_name}]]</td>
+                            <td>[[${appointment.appointment_date}]]</td>
+                            <td>[[${appointment.visiting_date}]]</td>
+                            <td>[[${appointment.visiting_time}]]</td>
+                            <td>[[${appointment.status}]]</td>
+                            <td><a href="#">prescription</a></td>
                         </tr>
                     </th:block>
                     </tbody>

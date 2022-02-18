@@ -9,6 +9,11 @@ public class Appointment {
     private String status;
     private int prescription_id;
 
+    private String doctor_name;
+    private String visiting_date;
+    private String visiting_time;
+
+
     public int getAppointment_id() {
         return appointment_id;
     }
@@ -77,5 +82,29 @@ public class Appointment {
                 ", status='" + status + '\'' +
                 ", prescription_id=" + prescription_id +
                 '}';
+    }
+
+    public String getDoctor_name() {
+        return doctor_name;
+    }
+
+    public void setDoctor_name(String doctor_name) {
+        this.doctor_name = doctor_name;
+    }
+
+    public String getVisiting_date() {
+        return visiting_date;
+    }
+
+    public void setVisiting_date(String visiting_date) {
+        this.visiting_date = visiting_date;
+    }
+
+    public String getVisiting_time() {
+        return visiting_time;
+    }
+
+    public void setVisiting_time(String visiting_time) {
+        this.visiting_time = visiting_time;
     }
 }
