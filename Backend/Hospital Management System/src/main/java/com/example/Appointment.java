@@ -13,6 +13,8 @@ public class Appointment {
     private String visiting_date;
     private String visiting_time;
 
+    private String patientName;
+
 
     public int getAppointment_id() {
         return appointment_id;
@@ -106,5 +108,13 @@ public class Appointment {
 
     public void setVisiting_time(String visiting_time) {
         this.visiting_time = visiting_time;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 }

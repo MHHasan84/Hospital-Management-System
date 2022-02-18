@@ -33,7 +33,7 @@ public class PatientController {
     }
 
     @GetMapping("/patient/{patient_id}/add_appointment/{doctor_id}/{schedule_id}")
-    public String addAppointment(@PathVariable("patient_id") String patientId,@PathVariable("doctor_id") String doctorId,@PathVariable("schedule_id") int scheduleId){
+    public String addAppointment(@PathVariable("patient_id") String patientId,@PathVariable("doctor_id") String doctorId,@PathVariable("schedule_id") int scheduleId,Model model){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String currentDate= dtf.format(now);
@@ -46,6 +46,7 @@ public class PatientController {
         appointment.setStatus("waiting for approval");
 
         patientDao.insertAppointment(appointment);
+        model.addAttribute("patientId",patientId);
         return "redirect:/patient/"+patientId+"/appointments";
     }
 
@@ -53,6 +54,7 @@ public class PatientController {
     public String showAppointments(@PathVariable("patient_id") String patientId,Model model){
         List<Appointment> appointmentList=patientDao.getAllAppointments(patientId);
         model.addAttribute("appointmentList",appointmentList);
+        model.addAttribute("patientId",patientId);
         return "patient_appointments";
     }
 

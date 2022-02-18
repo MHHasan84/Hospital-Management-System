@@ -268,4 +268,44 @@ public class DoctorDao {
             }
         }
     }
+
+    public List<Appointment> getAllAppointment(String doctorId){
+        List<Appointment> appointmentList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from appointments where doctor_id='%s'",doctorId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                Appointment appointment=new Appointment();
+                appointment.setAppointment_id(rs.getInt("appointment_id"));
+                appointment.setDoctor_id(rs.getString("doctor_id"));
+                appointment.setPatient_id(rs.getString("patient_id"));
+                appointment.setSchedule_id(rs.getInt("schedule_id"));
+                appointment.setAppointment_date(rs.getString("appointment_date"));
+                appointment.setStatus(rs.getString("status"));
+                appointment.setPrescription_id(rs.getInt("prescription_id"));
+
+                Doctor doctor= getDoctor(appointment.getDoctor_id());
+                DoctorSchedule doctorSchedule= getDoctorSchedule(appointment.getSchedule_id());
+                appointment.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                appointment.setVisiting_date(doctorSchedule.getSchedule_date());
+                appointment.setVisiting_time(doctorSchedule.getStart_time()+" - "+doctorSchedule.getEnd_time());
+
+                Patient patient=new PatientDao().getPatient(appointment.getPatient_id());
+                appointment.setPatientName(pa);
+
+                appointmentList.add(appointment);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllSchedule: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return doctorScheduleList;
+    }
 }
