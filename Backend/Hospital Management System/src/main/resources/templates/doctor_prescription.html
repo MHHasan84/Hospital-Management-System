@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #1b201d;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: rgb(185, 189, 187);
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar a {float: left;}
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        ul.breadcrumb {
+            padding: 10px 16px;
+            list-style: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        /* Display list items side by side */
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        /* Add a slash symbol (/) before/behind each list item */
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+        /* Add a color to all links inside the list */
+        ul.breadcrumb li a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+
+        /* Add a color on mouse-over */
+        ul.breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="navbar-brand">Admin</div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="nav-link">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="sidebar">
+    <a href="dashboard.html">Dashboard</a>
+    <a class="active" href="doctors.html">Users</a>
+    <a href="tests.html">Services</a>
+    <a href="rooms.html">Accessories</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="notification.html">Notification</a>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 style="text-align: center;">Doctor's Form</h3>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="'/doctor/appointments/'+${doctorId}+'/make_prescription/'+${appointmentId}" method="post" th:object="${prescription}">
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="fname">Problem:</label>
+                                        <textarea th:field="*{problem}" type="text" class="form-control" id="fname"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="lname">Medicine:</label>
+                                        <textarea th:field="*{medicine}" type="text" class="form-control" id="lname"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="userid">Test:</label>
+                                        <textarea th:field="*{test}" type="text" class="form-control" id="userid"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="pwd">Operation:</label>
+                                        <textarea th:field="*{operation}" type="password" class="form-control" id="pwd"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="add">Others:</label>
+                                        <textarea th:field="*{others}" type="text" class="form-control" id="add"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-dark btn-block">Submit</button>
+                            <button class="btn btn-dark btn-block">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

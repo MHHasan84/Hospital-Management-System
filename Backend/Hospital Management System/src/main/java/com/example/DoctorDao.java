@@ -284,7 +284,6 @@ public class DoctorDao {
                 appointment.setSchedule_id(rs.getInt("schedule_id"));
                 appointment.setAppointment_date(rs.getString("appointment_date"));
                 appointment.setStatus(rs.getString("status"));
-                appointment.setPrescription_id(rs.getInt("prescription_id"));
 
                 Doctor doctor= getDoctor(appointment.getDoctor_id());
                 DoctorSchedule doctorSchedule= getDoctorSchedule(appointment.getSchedule_id());
@@ -293,12 +292,12 @@ public class DoctorDao {
                 appointment.setVisiting_time(doctorSchedule.getStart_time()+" - "+doctorSchedule.getEnd_time());
 
                 Patient patient=new PatientDao().getPatient(appointment.getPatient_id());
-                appointment.setPatientName(pa);
+
 
                 appointmentList.add(appointment);
             }
         } catch (Exception e) {
-            System.out.println("Exception in getAllSchedule: " + e);
+            System.out.println("Exception in getAllAppointment: " + e);
         } finally {
             try {
                 oc.close();
@@ -306,6 +305,58 @@ public class DoctorDao {
                 e.printStackTrace();
             }
         }
-        return doctorScheduleList;
+        return appointmentList;
+    }
+
+    public Prescription getPrescription(int appointmentId){
+        Prescription prescription=new Prescription();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from prescription where id=%d",appointmentId);
+            ResultSet rs = oc.searchDB(query);
+            if (rs.next()){
+                prescription.setAppointment_id(rs.getInt("appointment_id"));
+                prescription.setProblem(rs.getString("problem"));
+                prescription.setMedicine(rs.getString("medicine"));
+                prescription.setTest(rs.getString("test"));
+                prescription.setOperation(rs.getString("operation"));
+                prescription.setProblem(rs.getString("others"));
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getPrescription: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return prescription;
+    }
+
+    public void updatePrescription(int appointmentId,Prescription prescription){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String updateQuery=String.format(
+                    "update prescription set problem='%s',medicine='%s',test='%s'," +
+                            "operation=%s,others='%s' where appointment_id=%d", prescription.getProblem(),
+                    prescription.getMedicine(), prescription.getTest(), prescription.getOperation(),
+                    prescription.getOthers()
+            );
+            oc.updateDB(updateQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in updatePrescription: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

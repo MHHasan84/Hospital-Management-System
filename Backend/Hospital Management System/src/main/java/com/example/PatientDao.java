@@ -15,7 +15,6 @@ public class PatientDao {
             ResultSet rs = oc.searchDB(query);
             if (rs.next()) {
                 patient.setId(rs.getString("id"));
-                patient.setName(rs.getString("name"));
             }
             else {
                 System.out.println("No patient in this id");
@@ -39,9 +38,9 @@ public class PatientDao {
             String insertQuery=String.format(
                     "insert into appointments(doctor_id,patient_id,schedule_id," +
                             "appointment_date,status,prescription_id)" +
-                            " values('%s','%s','%d','%s','%s',%d)", appointment.getDoctor_id(),
+                            " values('%s','%s','%d','%s','%s')", appointment.getDoctor_id(),
                     appointment.getPatient_id(), appointment.getSchedule_id(), appointment.getAppointment_date(),
-                    appointment.getStatus(), appointment.getPrescription_id()
+                    appointment.getStatus()
             );
             oc.updateDB(insertQuery);
         }
@@ -73,7 +72,6 @@ public class PatientDao {
                 appointment.setSchedule_id(rs.getInt("schedule_id"));
                 appointment.setAppointment_date(rs.getString("appointment_date"));
                 appointment.setStatus(rs.getString("status"));
-                appointment.setPrescription_id(rs.getInt("prescription_id"));
 
                 Doctor doctor= doctorDao.getDoctor(appointment.getDoctor_id());
                 DoctorSchedule doctorSchedule= doctorDao.getDoctorSchedule(appointment.getSchedule_id());

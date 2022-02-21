@@ -38,8 +38,6 @@ public class UsersTest {
     }
     @Test
     public void testDelete(){
-        Appointment appointment=new Appointment();
-        System.out.println(appointment.getPrescription_id());
 
     }
 

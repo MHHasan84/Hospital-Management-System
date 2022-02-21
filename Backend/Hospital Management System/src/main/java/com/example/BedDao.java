@@ -56,6 +56,31 @@ public class BedDao {
         return bed;
     }
 
+    public List<Bed> getAllBedByWardNo(String wardNo){
+        List<Bed> bedList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from bed where ward_no='%s'",wardNo);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                Bed bed=new Bed();
+                bed.setBed_no(rs.getString("bed_no"));
+                bed.setWard_no(rs.getString("ward_no"));
+                bedList.add(bed);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllBedByWardNo: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return bedList;
+    }
+
     public void insertBed(Bed bed){
         OracleConnect oc = null;
         try {

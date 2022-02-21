@@ -7,7 +7,6 @@ public class Appointment {
     private int schedule_id;
     private String appointment_date;
     private String status;
-    private int prescription_id;
 
     private String doctor_name;
     private String visiting_date;
@@ -65,26 +64,6 @@ public class Appointment {
         this.status = status;
     }
 
-    public int getPrescription_id() {
-        return prescription_id;
-    }
-
-    public void setPrescription_id(int prescription_id) {
-        this.prescription_id = prescription_id;
-    }
-
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointment_id=" + appointment_id +
-                ", doctor_id='" + doctor_id + '\'' +
-                ", patient_id='" + patient_id + '\'' +
-                ", schedule_id=" + schedule_id +
-                ", appointment_date='" + appointment_date + '\'' +
-                ", status='" + status + '\'' +
-                ", prescription_id=" + prescription_id +
-                '}';
-    }
 
     public String getDoctor_name() {
         return doctor_name;

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #1b201d;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: rgb(185, 189, 187);
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar a {float: left;}
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        ul.breadcrumb {
+            padding: 10px 16px;
+            list-style: none;
+            background-color: rgb(255, 255, 255);
+        }
+
+        /* Display list items side by side */
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        /* Add a slash symbol (/) before/behind each list item */
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+        /* Add a color to all links inside the list */
+        ul.breadcrumb li a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+
+        /* Add a color on mouse-over */
+        ul.breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="navbar-brand">Admin</div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="nav-link">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="sidebar">
+    <a th:href="'/receptionist/'+${receptionist_id}+'/profile'">Profile</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/all_due_appointment'">Approve Appointments</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/approve_test_form'">Approve Test</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/approve_operation_form'">Make Operation Schedule</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/ward_list'">Admit Patient</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/all_present_admitted_patient'">Release Patient</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/all_bill'">Bill</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/all_operation_schedule'">All Operation Schedule</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/all_appointment'">All Appointments</a>
+    <a th:href="'/receptionist/'+${receptionist_id}+'/all_previous_admitted_patient'">All Admitted Patient</a>
+    <a class="active" th:href="'/receptionist/'+${receptionist_id}+'/schedule'">My Schedule</a>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="breadcrumb">
+                    <li>doctors</li>
+                    <li><a href="receiptionists.html">receiptionists</a></li>
+                    <li><a href="technitians.html">technitians</a></li>
+                </ul>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="employeeSchedule:${employeeScheduleList}">
+                        <tr>
+                            <td>[[${employeeSchedule.day}]]</td>
+                            <td>[[${employeeSchedule.start_time}]]</td>
+                            <td>[[${employeeSchedule.end_time}]]</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
