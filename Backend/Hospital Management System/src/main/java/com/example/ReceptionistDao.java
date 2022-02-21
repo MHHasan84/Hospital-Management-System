@@ -443,6 +443,7 @@ public class ReceptionistDao {
                 bill.setBill_create_date(rs.getString("bill_create_date"));
                 bill.setBill_clear_date(rs.getString("bill_clear_date"));
                 bill.setBill_status(rs.getString("bill_status"));
+                bill.setPatient_id(rs.getString("patient_id"));
 
                 billList.add(bill);
             }

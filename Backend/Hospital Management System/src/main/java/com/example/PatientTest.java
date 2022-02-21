@@ -9,6 +9,16 @@ public class PatientTest {
     private String patient_id;
     private String doctor_id;
 
+    private String test_name;
+
+    public String getTest_name() {
+        return test_name;
+    }
+
+    public void setTest_name(String test_name) {
+        this.test_name = test_name;
+    }
+
     public int getSample_no() {
         return sample_no;
     }

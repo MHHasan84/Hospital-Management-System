@@ -313,7 +313,7 @@ public class DoctorDao {
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
-            String query = String.format("select * from prescription where id=%d",appointmentId);
+            String query = String.format("select * from prescription where appointment_id=%d",appointmentId);
             ResultSet rs = oc.searchDB(query);
             if (rs.next()){
                 prescription.setAppointment_id(rs.getInt("appointment_id"));
