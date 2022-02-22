@@ -107,12 +107,13 @@
 
 
 <div class="sidebar">
-    <a href="dashboard.html">Dashboard</a>
-    <a class="active" href="doctors.html">Users</a>
-    <a href="tests.html">Services</a>
-    <a href="rooms.html">Accessories</a>
-    <a href="analytics.html">Analytics</a>
-    <a href="notification.html">Notification</a>
+    <a th:href="@{/admin/user/doctor}">Doctor</a>
+    <a class="active" th:href="@{/admin/user/receptionist}">Receptionist</a>
+    <a th:href="@{/admin/user/technician}">Technician</a>
+    <a th:href="@{/admin/service/test}">Test</a>
+    <a th:href="@{/admin/service/operation}">Operation</a>
+    <a th:href="@{/admin/ward}">Ward</a>
+    <a th:href="@{/admin/bed}">Bed</a>
 </div>
 
 <div class="content">
@@ -209,8 +210,8 @@
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label th:field="*{qualification}" for="qlf">Qualification:</label>
-                                        <input type="text" class="form-control" id="qlf">
+                                        <label for="qlf">Qualification:</label>
+                                        <input th:field="*{qualification}" type="text" class="form-control" id="qlf">
                                     </div>
                                 </div>
                             </div>

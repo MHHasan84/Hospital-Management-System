@@ -107,12 +107,12 @@
 
 
 <div class="sidebar">
-    <a href="profile.html">Profile</a>
-    <a href="#">Doctors List</a>
-    <a href="#">Appointments</a>
-    <a href="upcoming_surgeries.html">Surgeries</a>
-    <a href="upcoming_test.html">Test</a>
-    <a href="notification.html">Notification</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/profile'">Profile</a>
+    <a class="active" th:href="'/doctor/'+${doctor_id}+'/appointments'">Appointments</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/admitted_patient'">Admitted Patient</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/operation'">Operation</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/test'">Test</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/schedule'">Schedule</a>
 </div>
 <div class="content">
     <div class="container">
@@ -145,7 +145,7 @@
                             <td>[[${appointment.visiting_date}]]</td>
                             <td>[[${appointment.visiting_time}]]</td>
                             <td>[[${appointment.status}]]</td>
-                            <td><a th:href="'/doctor/appointments/'+${appointment.doctor_id}+'/prescription/'+${appointment.appointment_id}">prescription</a></td>
+                            <td><a th:href="'/doctor/'+${appointment.doctor_id}+'/prescription/'+${appointment.appointment_id}">prescription</a></td>
                         </tr>
                     </th:block>
                     </tbody>

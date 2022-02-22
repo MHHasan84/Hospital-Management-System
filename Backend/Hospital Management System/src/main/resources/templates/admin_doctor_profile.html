@@ -1,10 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #1b201d;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: rgb(185, 189, 187);
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidebar a {float: left;}
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="navbar-brand">Doctor</div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="nav-link">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="sidebar">
+    <a class="active" th:href="@{/admin/user/doctor}">Doctor</a>
+    <a th:href="@{/admin/user/receptionist}">Receptionist</a>
+    <a th:href="@{/admin/user/technician}">Technician</a>
+    <a th:href="@{/admin/service/test}">Test</a>
+    <a th:href="@{/admin/service/operation}">Operation</a>
+    <a th:href="@{/admin/ward}">Ward</a>
+    <a th:href="@{/admin/bed}">Bed</a>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-header">
+                        <b>Profile</b>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Name</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.first_name}]] [[${doctor.last_name}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Email</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.email}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Address</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.address}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Phone No</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.phone_no}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Date of birth</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.date_of_birth}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Gender</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.gender}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Department</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.department_name}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Designation</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.designation}]]</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <b>Qualification</b>
+                                </div>
+                                <div class="col-sm-8">[[${doctor.qualification}]]</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--<a th:href="@{'/admin/doctor/edit_form/'+${doctor.id}}">
+                        <button class="btn btn-dark btn-block">Edit</button>
+                    </a>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 </body>
+
 </html>

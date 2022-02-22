@@ -107,17 +107,13 @@
 
 
 <div class="sidebar">
-    <a th:href="'/receptionist/'+${receptionist_id}+'/profile'">Profile</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/all_due_appointment'">Approve Appointments</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/approve_test_form'">Approve Test</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/approve_operation_form'">Make Operation Schedule</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/ward_list'">Admit Patient</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/all_present_admitted_patient'">Release Patient</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/all_bill'">Bill</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/all_operation_schedule'">All Operation Schedule</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/all_appointment'">All Appointments</a>
-    <a class="active" th:href="'/receptionist/'+${receptionist_id}+'/all_previous_admitted_patient'">All Admitted Patient</a>
-    <a th:href="'/receptionist/'+${receptionist_id}+'/schedule'">My Schedule</a>
+    <a th:href="'/patient/'+${patient_id}+'/profile'">Profile</a>
+    <a th:href="'/patient/'+${patient_id}+'/doctor_list'">Doctors List</a>
+    <a th:href="'/patient/'+${patient_id}+'/appointments'">Appointments</a>
+    <a th:href="'/patient/'+${patient_id}+'/test'">Test</a>
+    <a th:href="'/patient/'+${patient_id}+'/operation'">Operation</a>
+    <a class="active" th:href="'/patient/'+${patient_id}+'/admittedHistory'">Admitted History</a>
+    <a th:href="'/patient/'+${patient_id}+'/bill'">Bill</a>
 </div>
 <div class="content">
     <div class="container">

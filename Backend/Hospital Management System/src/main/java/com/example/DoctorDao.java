@@ -292,12 +292,13 @@ public class DoctorDao {
                 appointment.setVisiting_time(doctorSchedule.getStart_time()+" - "+doctorSchedule.getEnd_time());
 
                 Patient patient=new PatientDao().getPatient(appointment.getPatient_id());
+                appointment.setPatientName(patient.getFirst_name()+" "+patient.getLast_name());
 
 
                 appointmentList.add(appointment);
             }
         } catch (Exception e) {
-            System.out.println("Exception in getAllAppointment: " + e);
+            System.out.println("Exception in getAllAppointmentByDoctorId: " + e);
         } finally {
             try {
                 oc.close();
@@ -339,16 +340,200 @@ public class DoctorDao {
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
+            String query = String.format("select * from prescription where appointment_id=%d",appointmentId);
+            ResultSet rs = oc.searchDB(query);
+            if (rs.next()){
+                String updateQuery=String.format(
+                        "update prescription set problem='%s',medicine='%s',test='%s'," +
+                                "operation='%s',others='%s' where appointment_id=%d", prescription.getProblem(),
+                        prescription.getMedicine(), prescription.getTest(), prescription.getOperation(),
+                        prescription.getOthers(),appointmentId
+                );
+                oc.updateDB(updateQuery);
+            }
+            else{
+                String insertQuery = String.format(
+                        "insert into prescription(appointment_id,problem,medicine,test," +
+                                "operation,others) values (%d,'%s', '%s', '%s', '%s', '%s')"
+                        ,prescription.getAppointment_id(), prescription.getProblem(), prescription.getMedicine(), prescription.getTest(),
+                        prescription.getOperation(), prescription.getOthers());
+                oc.updateDB(insertQuery);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Exception in updatePrescription: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public List<PatientTest> getAllTest(String doctorId){
+        List<PatientTest> patientTestList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from patient_test where doctor_id='%s'",doctorId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                PatientTest patientTest=new PatientTest();
+                patientTest.setPatient_id(rs.getString("patient_id"));
+                patientTest.setDoctor_id(rs.getString("doctor_id"));
+                patientTest.setTest_id(rs.getString("test_id"));
+                patientTest.setTest_date(rs.getString("test_date"));
+                patientTest.setResult_date(rs.getString("result_date"));
+                patientTest.setResult(rs.getString("result"));
+                patientTest.setSample_no(rs.getInt("sample_no"));
+
+
+                patientTest.setTest_name(new TestDao().getTest(patientTest.getTest_id()).getTest_name());
+
+                patientTestList.add(patientTest);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllTestByDoctorId: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return patientTestList;
+    }
+
+    public List<PatientOperation> getAllPatientOperation(String doctorId){
+        List<PatientOperation> patientOperationList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from patient_operation where doctor_id='%s'",doctorId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                PatientOperation patientOperation=new PatientOperation();
+                patientOperation.setOperation_no(rs.getInt("operation_no"));
+                patientOperation.setPatient_id(rs.getString("patient_id"));
+                patientOperation.setDoctor_id(rs.getString("doctor_id"));
+                patientOperation.setOperation_date(rs.getString("operation_date"));
+                patientOperation.setOperation_time(rs.getString("operation_time"));
+                patientOperation.setOperation_id(rs.getString("operation_id"));
+                patientOperation.setResult(rs.getString("result"));
+
+                Doctor doctor= getDoctor(patientOperation.getDoctor_id());
+                Patient patient= new PatientDao().getPatient(patientOperation.getPatient_id());
+                Operation operation= new OperationDao().getOperation(patientOperation.getOperation_id());
+
+                patientOperation.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                patientOperation.setPatient_name(patient.getFirst_name()+" "+patient.getLast_name());
+                patientOperation.setOperation_name(operation.getOperation_name());
+
+                patientOperationList.add(patientOperation);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllPatientOperationByDoctorId: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return patientOperationList;
+    }
+
+    public List<AdmittedPatient> getAllAdmittedPatient(String doctorId){
+        List<AdmittedPatient> admittedPatientList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from admitted_patient where doctor_id='%s'",doctorId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                AdmittedPatient admittedPatient=new AdmittedPatient();
+                admittedPatient.setAdmitted_id(rs.getInt("admitted_id"));
+                admittedPatient.setAdmitted_date(rs.getString("admitted_date"));
+                admittedPatient.setPatient_id(rs.getString("patient_id"));
+                admittedPatient.setDoctor_id(rs.getString("doctor_id"));
+                admittedPatient.setRelease_date(rs.getString("release_date"));
+                admittedPatient.setWard_no(rs.getString("ward_no"));
+                admittedPatient.setBed_no(rs.getString("bed_no"));
+
+                Doctor doctor= getDoctor(admittedPatient.getDoctor_id());
+                Patient patient= new PatientDao().getPatient(admittedPatient.getPatient_id());
+
+                admittedPatient.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                admittedPatient.setPatient_name(patient.getFirst_name()+" "+patient.getLast_name());
+
+
+                admittedPatientList.add(admittedPatient);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllAdmittedPatientByDoctorId: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return admittedPatientList;
+    }
+
+    public PatientOperation getPatientOperation(int operationNo){
+        PatientOperation patientOperation=new PatientOperation();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from patient_operation where operation_no=%d",operationNo);
+            ResultSet rs = oc.searchDB(query);
+            if (rs.next()){
+                patientOperation.setOperation_no(rs.getInt("operation_no"));
+                patientOperation.setPatient_id(rs.getString("patient_id"));
+                patientOperation.setDoctor_id(rs.getString("doctor_id"));
+                patientOperation.setOperation_date(rs.getString("operation_date"));
+                patientOperation.setOperation_time(rs.getString("operation_time"));
+                patientOperation.setOperation_id(rs.getString("operation_id"));
+                patientOperation.setResult(rs.getString("result"));
+
+                Doctor doctor= getDoctor(patientOperation.getDoctor_id());
+                Patient patient= new PatientDao().getPatient(patientOperation.getPatient_id());
+                Operation operation= new OperationDao().getOperation(patientOperation.getOperation_id());
+
+                patientOperation.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                patientOperation.setPatient_name(patient.getFirst_name()+" "+patient.getLast_name());
+                patientOperation.setOperation_name(operation.getOperation_name());
+
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllPatientOperationByOperationNo: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return patientOperation;
+    }
+
+    public void editOperationResult(int operationNo,PatientOperation patientOperation){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
             String updateQuery=String.format(
-                    "update prescription set problem='%s',medicine='%s',test='%s'," +
-                            "operation=%s,others='%s' where appointment_id=%d", prescription.getProblem(),
-                    prescription.getMedicine(), prescription.getTest(), prescription.getOperation(),
-                    prescription.getOthers()
+                    "update patient_operation set result='%s' where operation_no=%d",
+                    patientOperation.getResult(),operationNo
             );
             oc.updateDB(updateQuery);
         }
         catch (Exception e) {
-            System.out.println("Exception in updatePrescription: " + e);
+            System.out.println("Exception in editOperationResult: " + e);
         }
         finally {
             try {

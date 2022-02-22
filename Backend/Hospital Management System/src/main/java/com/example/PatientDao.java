@@ -8,6 +8,38 @@ public class PatientDao {
     DoctorDao doctorDao=new DoctorDao();
     TestDao testDao=new TestDao();
     OperationDao operationDao=new OperationDao();
+
+    public void insertPatient(Patient patient){
+        UserDao2 userDao2=new UserDao2();
+        boolean user_insert_succeed=userDao2.addUser(patient.getId(), patient.getPassword(), "2");
+        if(!user_insert_succeed){
+            return;
+        }
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+
+            String insertQuery = String.format(
+                    "insert into patients(id,first_name,last_name,address,gender,phone_no,email,date_of_birth) values ('%s', '%s', '%s'," +
+                            " '%s', '%s', '%s', '%s', '%s')"
+                    , patient.getId(), patient.getFirst_name(), patient.getLast_name(), patient.getAddress(),
+                    patient.getGender(), patient.getPhone_no(),
+                    patient.getEmail(), patient.getDate_of_birth());
+            oc.updateDB(insertQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in addPatient: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public Patient getPatient(String id){
         Patient patient=new Patient();
         OracleConnect oc = null;
@@ -17,6 +49,13 @@ public class PatientDao {
             ResultSet rs = oc.searchDB(query);
             if (rs.next()) {
                 patient.setId(rs.getString("id"));
+                patient.setFirst_name(rs.getString("first_name"));
+                patient.setLast_name(rs.getString("last_name"));
+                patient.setDate_of_birth(rs.getString("date_of_birth"));
+                patient.setAddress(rs.getString("address"));
+                patient.setPhone_no(rs.getString("phone_no"));
+                patient.setEmail(rs.getString("email"));
+                patient.setGender(rs.getString("gender"));
             }
             else {
                 System.out.println("No patient in this id");
@@ -39,7 +78,7 @@ public class PatientDao {
             oc = new OracleConnect();
             String insertQuery=String.format(
                     "insert into appointments(doctor_id,patient_id,schedule_id," +
-                            "appointment_date,status,prescription_id)" +
+                            "appointment_date,status)" +
                             " values('%s','%s','%d','%s','%s')", appointment.getDoctor_id(),
                     appointment.getPatient_id(), appointment.getSchedule_id(), appointment.getAppointment_date(),
                     appointment.getStatus()

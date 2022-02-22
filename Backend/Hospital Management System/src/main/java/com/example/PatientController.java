@@ -16,6 +16,14 @@ public class PatientController {
     DoctorDao doctorDao=new DoctorDao();
     PatientDao patientDao=new PatientDao();
 
+    @GetMapping("/patient/{patient_id}/profile")
+    public String profile(@PathVariable("patient_id") String patientId,Model model){
+        Patient patient= patientDao.getPatient(patientId);
+        model.addAttribute("patient",patient);
+        model.addAttribute("patientId",patientId);
+        return "patient_profile";
+    }
+
     @GetMapping("/patient/{patient_id}/doctor_list")
     public String doctorList(@PathVariable("patient_id") String patientId,Model model){
         List<Doctor> doctorList=doctorDao.getAllDoctor();
@@ -59,7 +67,7 @@ public class PatientController {
     }
 
     @GetMapping("/patient/{patient_id}/prescription/{appointment_id}")
-    public String showAppointments(@PathVariable("patient_id") String patientId,@PathVariable("appointment_id") int appointmentId,Model model){
+    public String showPrescription(@PathVariable("patient_id") String patientId,@PathVariable("appointment_id") int appointmentId,Model model){
         Prescription prescription= patientDao.getPrescription(appointmentId);
         model.addAttribute("prescription",prescription);
         model.addAttribute("patientId",patientId);

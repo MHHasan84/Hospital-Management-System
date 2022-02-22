@@ -75,12 +75,9 @@
 
 
 <div class="sidebar">
-    <a class="active" href="profile.html">Profile</a>
-    <a href="appointments.html">Appointments</a>
-    <a href="admitted_patients.html">Patients</a>
-    <a href="upcoming_surgeries.html">Surgeries</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="notification.html">Notification</a>
+    <a class="active" th:href="'/technician/'+${technician_id}+'/profile'">Profile</a>
+    <a th:href="'/technician/'+${technician_id}+'/test'">Test</a>
+    <a th:href="'/technician/'+${technician_id}+'/schedule'">Schedule</a>
 </div>
 
 <div class="content">

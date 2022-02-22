@@ -211,4 +211,98 @@ public class TechnicianDao {
             }
         }
     }
+
+    public List<PatientTest> getAllTest(String technicianId){
+        List<PatientTest> patientTestList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("" +
+                    "SELECT * FROM\n" +
+                    "PATIENT_TEST A\n" +
+                    "JOIN TEST B\n" +
+                    "ON(A.TEST_ID=B.ID AND B.TECHNITIAN_ID='%s')",technicianId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                PatientTest patientTest=new PatientTest();
+                patientTest.setPatient_id(rs.getString("patient_id"));
+                patientTest.setDoctor_id(rs.getString("doctor_id"));
+                patientTest.setTest_id(rs.getString("test_id"));
+                patientTest.setTest_date(rs.getString("test_date"));
+                patientTest.setResult_date(rs.getString("result_date"));
+                patientTest.setResult(rs.getString("result"));
+                patientTest.setSample_no(rs.getInt("sample_no"));
+
+
+                patientTest.setTest_name(new TestDao().getTest(patientTest.getTest_id()).getTest_name());
+
+                patientTestList.add(patientTest);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllTestByTechnicianId: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return patientTestList;
+    }
+
+    public void editTestResult(int sampleNo,PatientTest patientTest){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String updateQuery=String.format(
+                    "update patient_test set result='%s',result_date='%s' where sample_no=%d",
+                    patientTest.getResult(),patientTest.getResult_date(),sampleNo
+            );
+            oc.updateDB(updateQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in editTestResult: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public PatientTest getTest(int sampleNo){
+        PatientTest patientTest=new PatientTest();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from patient_test where sample_no=%d",sampleNo);
+            ResultSet rs = oc.searchDB(query);
+            if (rs.next()){
+
+                patientTest.setPatient_id(rs.getString("patient_id"));
+                patientTest.setDoctor_id(rs.getString("doctor_id"));
+                patientTest.setTest_id(rs.getString("test_id"));
+                patientTest.setTest_date(rs.getString("test_date"));
+                patientTest.setResult_date(rs.getString("result_date"));
+                patientTest.setResult(rs.getString("result"));
+                patientTest.setSample_no(rs.getInt("sample_no"));
+
+                patientTest.setTest_name(new TestDao().getTest(patientTest.getTest_id()).getTest_name());
+
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getTestBySampleNo: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return patientTest;
+    }
 }

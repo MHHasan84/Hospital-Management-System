@@ -107,12 +107,13 @@
 
 
 <div class="sidebar">
-    <a href="dashboard.html">Dashboard</a>
-    <a class="active" href="doctors.html">Users</a>
-    <a href="tests.html">Services</a>
-    <a href="rooms.html">Accessories</a>
-    <a href="analytics.html">Analytics</a>
-    <a href="notification.html">Notification</a>
+    <a th:href="'/patient/'+${patient_id}+'/profile'">Profile</a>
+    <a th:href="'/patient/'+${patient_id}+'/doctor_list'">Doctors List</a>
+    <a class="active" th:href="'/patient/'+${patient_id}+'/appointments'">Appointments</a>
+    <a th:href="'/patient/'+${patient_id}+'/test'">Test</a>
+    <a th:href="'/patient/'+${patient_id}+'/operation'">Operation</a>
+    <a th:href="'/patient/'+${patient_id}+'/admittedHistory'">Admitted History</a>
+    <a th:href="'/patient/'+${patient_id}+'/bill'">Bill</a>
 </div>
 
 <div class="content">
@@ -133,6 +134,9 @@
                                         <textarea disabled th:field="*{problem}" type="text" class="form-control" id="fname"></textarea>
                                     </div>
                                 </div>
+
+                            </div>
+                            <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lname">Medicine:</label>
@@ -147,6 +151,8 @@
                                         <textarea disabled th:field="*{test}" type="text" class="form-control" id="userid"></textarea>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="pwd">Operation:</label>

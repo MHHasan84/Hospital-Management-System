@@ -71,7 +71,7 @@ public class AdminUserDoctorController {
     public String doctorProfile(@PathVariable("id") String id, Model model){
         Doctor doctor= doctorDao.getDoctor(id);
         model.addAttribute("doctor",doctor);
-        return "doctor_profile";
+        return "admin_doctor_profile";
     }
 
     @GetMapping("/admin/doctor/edit/form/{id}")

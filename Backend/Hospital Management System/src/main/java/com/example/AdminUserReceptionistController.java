@@ -66,7 +66,7 @@ public class AdminUserReceptionistController {
     public String receptionistProfile(@PathVariable("id") String id, Model model){
         Receptionist receptionist= receptionistDao.getReceptionist(id);
         model.addAttribute("receptionist",receptionist);
-        return "receptionist_profile";
+        return "admin_receptionist_profile";
     }
 
 

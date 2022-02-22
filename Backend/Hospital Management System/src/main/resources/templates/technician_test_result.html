@@ -107,56 +107,37 @@
 
 
 <div class="sidebar">
-    <a th:href="@{/admin/user/doctor}">Doctor</a>
-    <a th:href="@{/admin/user/receptionist}">Receptionist</a>
-    <a th:href="@{/admin/user/technician}">Technician</a>
-    <a th:href="@{/admin/service/test}">Test</a>
-    <a class="active" th:href="@{/admin/service/operation}">Operation</a>
-    <a th:href="@{/admin/ward}">Ward</a>
-    <a th:href="@{/admin/bed}">Bed</a>
+    <a th:href="'/technician/'+${technician_id}+'/profile'">Profile</a>
+    <a class="active" th:href="'/technician/'+${technician_id}+'/test'">Test</a>
+    <a th:href="'/technician/'+${technician_id}+'/schedule'">Schedule</a>
 </div>
 
 <div class="content">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <ul class="breadcrumb">
-                    <li>test</li>
-                    <li><a href="operations.html">surgeries</a></li>
-                </ul>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <a th:href="@{/admin/service/operation/add/form}">
-                            <button class="btn btn-dark my-2">Add New Operation</button>
-                        </a>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-header">
+                        <b style="text-align: center;">Add New Test</b>
                     </div>
+                    <div class="card-body">
+                        <form th:action="'/technician/'+${technicianId}+'/make_test_result/'+${sampleNo}" method="post" th:object="${patientTest}">
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="fname">Result:</label>
+                                        <input th:field="*{result}" type="text" class="form-control" id="fname">
+                                    </div>
+                                </div>
 
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-block">Submit</button>
+                            <button class="btn btn-dark btn-block">Cancel</button>
+                        </form>
+                    </div>
                 </div>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Operation Id</th>
-                        <th> Operation Name</th>
-                        <th>Room No</th>
-                        <th>Cost</th>
-                        <th>Status</th>
-                        <th>Edit</th>
 
-                    </tr>
-                    </thead>
-                    <th:block>
-                        <tbody th:each="operation:${operationList}">
-                        <tr>
-                            <td>[[${operation.id}]]</td>
-                            <td>[[${operation.operation_name}]]</td>
-                            <td>[[${operation.room_no}]]</td>
-                            <td>[[${operation.cost}]]</td>
-                            <td><u>[[${operation.status}]]</u></td>
-                            <td><a th:href="'/admin/service/operation/edit/form/'+${operation.id}">edit</a></td>
-                        </tr>
-                        </tbody>
-                    </th:block>
-                </table>
             </div>
         </div>
     </div>

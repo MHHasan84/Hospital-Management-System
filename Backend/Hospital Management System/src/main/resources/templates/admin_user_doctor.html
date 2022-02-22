@@ -107,12 +107,13 @@
 
 
 <div class="sidebar">
-    <a th:href="@{/admin/dashboard}">Dashboard</a>
-    <a class="active" th:href="@{/admin/user/doctor}">Users</a>
-    <a href="tests.html">Services</a>
-    <a href="rooms.html">Accessories</a>
-    <a href="analytics.html">Analytics</a>
-    <a href="notification.html">Notification</a>
+    <a class="active" th:href="@{/admin/user/doctor}">Doctor</a>
+    <a th:href="@{/admin/user/receptionist}">Receptionist</a>
+    <a th:href="@{/admin/user/technician}">Technician</a>
+    <a th:href="@{/admin/service/test}">Test</a>
+    <a th:href="@{/admin/service/operation}">Operation</a>
+    <a th:href="@{/admin/ward}">Ward</a>
+    <a th:href="@{/admin/bed}">Bed</a>
 </div>
 
 <div class="content">
@@ -126,18 +127,6 @@
                 </ul>
                 <div class="row">
                     <div class="col-sm-3">
-<!--                        <form th:action="@{/users/login}" method="post">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="userid">Userid</label>-->
-<!--                                <input th:field="${user.id}" type="text" id="userid" class="form-control" value="hasan">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="pwd">password</label>-->
-<!--                                <input th:field="${user.password}" type="password" id="pwd" class="form-control" value="hasan">-->
-<!--                            </div>-->
-<!--                            <button class="btn btn-dark" type="submit">Login</button>-->
-<!--                            <button class="btn btn-dark" type="button">Sign Up</button>-->
-<!--                        </form>-->
                         <form th:action="@{/admin/user/doctor/search}" method="post" th:object="${user}">
                             <div class="input-group mb-3">
                                 <input th:field="*{id}" type="text" class="form-control" placeholder="Search">

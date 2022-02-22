@@ -66,7 +66,7 @@ public class AdminUserTechnicianController {
     public String technicianProfile(@PathVariable("id") String id, Model model){
         Technician technician= technicianDao.getTechnician(id);
         model.addAttribute("technician",technician);
-        return "technician_profile";
+        return "admin_technician_profile";
     }
 
 

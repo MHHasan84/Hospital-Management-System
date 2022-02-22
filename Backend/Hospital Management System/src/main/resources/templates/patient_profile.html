@@ -75,12 +75,13 @@
 
 
 <div class="sidebar">
-    <a class="active" href="profile.html">Profile</a>
-    <a href="doctorlist.html">Doctors List</a>
-    <a href="upcoming_appointment.html">Appointments</a>
-    <a href="upcoming_surgeries.html">Surgeries</a>
-    <a href="upcoming_test.html">Test</a>
-    <a href="notification.html">Notification</a>
+    <a class="active" th:href="'/patient/'+${patient_id}+'/profile'">Profile</a>
+    <a th:href="'/patient/'+${patient_id}+'/doctor_list'">Doctors List</a>
+    <a th:href="'/patient/'+${patient_id}+'/appointments'">Appointments</a>
+    <a th:href="'/patient/'+${patient_id}+'/test'">Test</a>
+    <a th:href="'/patient/'+${patient_id}+'/operation'">Operation</a>
+    <a th:href="'/patient/'+${patient_id}+'/admittedHistory'">Admitted History</a>
+    <a th:href="'/patient/'+${patient_id}+'/bill'">Bill</a>
 </div>
 
 <div class="content">
@@ -90,55 +91,58 @@
             <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">
-                        Profile
+                        <b>Profile</b>
                     </div>
                     <div class="card-body">
                         <div class="card-text">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Name
+                                    <b>Name</b>
                                 </div>
-                                <div class="col-sm-8">[[${patient.name}]]</div>
+                                <div class="col-sm-8">[[${patient.first_name}]] [[${patient.last_name}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Email
+                                    <b>Email</b>
                                 </div>
-                                <div class="col-sm-8">patient-1@gmail.com</div>
+                                <div class="col-sm-8">[[${patient.email}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Address
+                                    <b>Address</b>
                                 </div>
-                                <div class="col-sm-8">adress of patient-1</div>
+                                <div class="col-sm-8">[[${patient.address}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Phone No
+                                    <b>Phone No</b>
                                 </div>
-                                <div class="col-sm-8">0123456789</div>
+                                <div class="col-sm-8">[[${patient.phone_no}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Date of Birth
+                                    <b>Date of birth</b>
                                 </div>
-                                <div class="col-sm-8">1/1/1990</div>
+                                <div class="col-sm-8">[[${patient.date_of_birth}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Gender
+                                    <b>Gender</b>
                                 </div>
-                                <div class="col-sm-8">Male</div>
+                                <div class="col-sm-8">[[${patient.gender}]]</div>
                             </div>
 
                         </div>
 
                     </div>
+                    <!--<a th:href="@{'/admin/doctor/edit_form/'+${doctor.id}}">
+                        <button class="btn btn-dark btn-block">Edit</button>
+                    </a>-->
 
                 </div>
             </div>
@@ -146,7 +150,6 @@
     </div>
 
 </div>
-
 </body>
 
 </html>

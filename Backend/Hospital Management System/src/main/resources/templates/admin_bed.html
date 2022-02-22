@@ -107,22 +107,19 @@
 
 
 <div class="sidebar">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="doctors.html">Users</a>
-    <a class="active" href="tests.html">Services</a>
-    <a href="rooms.html">Accessories</a>
-    <a href="analytics.html">Analytics</a>
-    <a href="notification.html">Notification</a>
+    <a th:href="@{/admin/user/doctor}">Doctor</a>
+    <a th:href="@{/admin/user/receptionist}">Receptionist</a>
+    <a th:href="@{/admin/user/technician}">Technician</a>
+    <a th:href="@{/admin/service/test}">Test</a>
+    <a th:href="@{/admin/service/operation}">Operation</a>
+    <a th:href="@{/admin/ward}">Ward</a>
+    <a class="active" th:href="@{/admin/bed}">Bed</a>
 </div>
 
 <div class="content">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <ul class="breadcrumb">
-                    <li>test</li>
-                    <li><a href="operations.html">surgeries</a></li>
-                </ul>
                 <div class="row">
                     <div class="col-sm-3">
                         <a th:href="@{/admin/bed/add/form}">

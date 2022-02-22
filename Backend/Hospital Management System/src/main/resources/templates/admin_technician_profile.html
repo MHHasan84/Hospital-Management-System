@@ -75,14 +75,14 @@
 
 
 <div class="sidebar">
-    <a class="active" th:href="'/doctor/'+${doctor_id}+'/profile'">Profile</a>
-    <a th:href="'/doctor/'+${doctor_id}+'/appointments'">Appointments</a>
-    <a th:href="'/doctor/'+${doctor_id}+'/admitted_patient'">Admitted Patient</a>
-    <a th:href="'/doctor/'+${doctor_id}+'/operation'">Operation</a>
-    <a th:href="'/doctor/'+${doctor_id}+'/test'">Test</a>
-    <a th:href="'/doctor/'+${doctor_id}+'/schedule'">Schedule</a>
+    <a th:href="@{/admin/user/doctor}">Doctor</a>
+    <a th:href="@{/admin/user/receptionist}">Receptionist</a>
+    <a class="active" th:href="@{/admin/user/technician}">Technician</a>
+    <a th:href="@{/admin/service/test}">Test</a>
+    <a th:href="@{/admin/service/operation}">Operation</a>
+    <a th:href="@{/admin/ward}">Ward</a>
+    <a th:href="@{/admin/bed}">Bed</a>
 </div>
-
 <div class="content">
     <div class="container">
         <div class="row">
@@ -98,63 +98,57 @@
                                 <div class="col-sm-4">
                                     <b>Name</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.first_name}]] [[${doctor.last_name}]]</div>
+                                <div class="col-sm-8">[[${technician.first_name}]] [[${technician.last_name}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Email</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.email}]]</div>
+                                <div class="col-sm-8">[[${technician.email}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Address</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.address}]]</div>
+                                <div class="col-sm-8">[[${technician.address}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Phone No</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.phone_no}]]</div>
+                                <div class="col-sm-8">[[${technician.phone_no}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Date of birth</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.date_of_birth}]]</div>
+                                <div class="col-sm-8">[[${technician.date_of_birth}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Gender</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.gender}]]</div>
+                                <div class="col-sm-8">[[${technician.gender}]]</div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <b>Department</b>
-                                </div>
-                                <div class="col-sm-8">[[${doctor.department_name}]]</div>
-                            </div>
-                            <hr>
+
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Designation</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.designation}]]</div>
+                                <div class="col-sm-8">[[${technician.designation}]]</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <b>Qualification</b>
                                 </div>
-                                <div class="col-sm-8">[[${doctor.qualification}]]</div>
+                                <div class="col-sm-8">[[${technician.qualification}]]</div>
                             </div>
 
                         </div>

@@ -107,14 +107,14 @@
 
 
 <div class="sidebar">
-    <a th:href="@{/admin/dashboard}">Dashboard</a>
-    <a class="active" th:href="@{/admin/user/doctor}">Users</a>
-    <a href="tests.html">Services</a>
-    <a href="rooms.html">Accessories</a>
-    <a href="analytics.html">Analytics</a>
-    <a href="notification.html">Notification</a>
+    <a th:href="'/patient/'+${patient_id}+'/profile'">Profile</a>
+    <a class="active" th:href="'/patient/'+${patient_id}+'/doctor_list'">Doctors List</a>
+    <a th:href="'/patient/'+${patient_id}+'/appointments'">Appointments</a>
+    <a th:href="'/patient/'+${patient_id}+'/test'">Test</a>
+    <a th:href="'/patient/'+${patient_id}+'/operation'">Operation</a>
+    <a th:href="'/patient/'+${patient_id}+'/admittedHistory'">Admitted History</a>
+    <a th:href="'/patient/'+${patient_id}+'/bill'">Bill</a>
 </div>
-
 <div class="content">
     <div class="container">
         <div class="row">

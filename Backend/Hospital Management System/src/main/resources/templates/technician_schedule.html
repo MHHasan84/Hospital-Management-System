@@ -107,13 +107,9 @@
 
 
 <div class="sidebar">
-    <a th:href="@{/admin/user/doctor}">Doctor</a>
-    <a class="active" th:href="@{/admin/user/receptionist}">Receptionist</a>
-    <a th:href="@{/admin/user/technician}">Technician</a>
-    <a th:href="@{/admin/service/test}">Test</a>
-    <a th:href="@{/admin/service/operation}">Operation</a>
-    <a th:href="@{/admin/ward}">Ward</a>
-    <a th:href="@{/admin/bed}">Bed</a>
+    <a th:href="'/technician/'+${technician_id}+'/profile'">Profile</a>
+    <a th:href="'/technician/'+${technician_id}+'/test'">Test</a>
+    <a class="active" th:href="'/technician/'+${technician_id}+'/schedule'">Schedule</a>
 </div>
 
 <div class="content">
@@ -125,47 +121,12 @@
                     <li><a href="receiptionists.html">receiptionists</a></li>
                     <li><a href="technitians.html">technitians</a></li>
                 </ul>
-                <form th:action="@{'/admin/receptionist/add_schedule/'+${receptionistId}}" method="post" th:object="${employeeSchedule}">
-                    <div class="form-row">
-                        <div class="col-sm-3">
-                            <div class="form-group form-inline">
-                                <label for="date" class="mr-2">Date</label>
-                                <select th:field="*{day}" class="form-control" id="date">
-                                    <option th:value="saturday">Saturday</option>
-                                    <option th:value="sunday">Sunday</option>
-                                    <option th:value="monday">Monday</option>
-                                    <option th:value="tuesday">Tuesday</option>
-                                    <option th:value="wednesday">Wednesday</option>
-                                    <option th:value="thursday">Thursday</option>
-                                    <option th:value="friday">Friday</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group form-inline">
-                                <label for="stime" class="mr-2">Start</label>
-                                <input th:field="*{start_time}" type="time" id="stime" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group form-inline">
-                                <label for="etime" class="mr-2">End</label>
-                                <input th:field="*{end_time}" type="time" id="etime" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-dark btn-block">Add Schedule</button>
-                        </div>
-                    </div>
-                </form>
-
                 <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Day</th>
                         <th>Start Time</th>
                         <th>End Time</th>
-                        <th>Cancel</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -174,7 +135,6 @@
                             <td>[[${employeeSchedule.day}]]</td>
                             <td>[[${employeeSchedule.start_time}]]</td>
                             <td>[[${employeeSchedule.end_time}]]</td>
-                            <td><a th:href="@{'/admin/receptionist/delete_schedule/'+${employeeSchedule.employee_id}+'/'+${employeeSchedule.id}}"><button class="btn btn-dark">Cancel</button></a></td>
                         </tr>
                     </th:block>
                     </tbody>

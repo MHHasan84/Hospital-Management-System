@@ -107,12 +107,12 @@
 
 
 <div class="sidebar">
-    <a href="dashboard.html">Dashboard</a>
-    <a class="active" href="doctors.html">Users</a>
-    <a href="tests.html">Services</a>
-    <a href="rooms.html">Accessories</a>
-    <a href="analytics.html">Analytics</a>
-    <a href="notification.html">Notification</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/profile'">Profile</a>
+    <a class="active" th:href="'/doctor/'+${doctor_id}+'/appointments'">Appointments</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/admitted_patient'">Admitted Patient</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/operation'">Operation</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/test'">Test</a>
+    <a th:href="'/doctor/'+${doctor_id}+'/schedule'">Schedule</a>
 </div>
 
 <div class="content">
@@ -125,7 +125,7 @@
                         <h3 style="text-align: center;">Doctor's Form</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="'/doctor/appointments/'+${doctorId}+'/make_prescription/'+${appointmentId}" method="post" th:object="${prescription}">
+                        <form th:action="'/doctor/'+${doctorId}+'/make_prescription/'+${appointmentId}" method="post" th:object="${prescription}">
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
