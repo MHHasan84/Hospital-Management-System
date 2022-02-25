@@ -1,14 +1,14 @@
 package com.example;
 
 public class Department {
-    private String id;
+    private int id;
     private String department_name;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

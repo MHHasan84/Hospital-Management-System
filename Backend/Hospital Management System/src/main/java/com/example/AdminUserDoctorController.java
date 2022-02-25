@@ -33,9 +33,7 @@ public class AdminUserDoctorController {
     public String adminAddDoctorForm(Model model){
         model.addAttribute("doctor",new Doctor());
         List<Department> departmentList=adminDao.getAllDepartment();
-        List<Room> roomList=adminDao.getRoomListForChamber();
         model.addAttribute("departmentList",departmentList);
-        model.addAttribute("roomList",roomList);
         return "admin_user_doctor_addnew";
     }
 
@@ -75,14 +73,16 @@ public class AdminUserDoctorController {
     }
 
     @GetMapping("/admin/doctor/edit/form/{id}")
-    public String adminServiceTestEditForm(@PathVariable("id") String id,Model model){
+    public String adminDoctorEditForm(@PathVariable("id") String id,Model model){
         Doctor doctor= doctorDao.getDoctor(id);
         model.addAttribute("doctor",doctor);
+        List<Department> departmentList=adminDao.getAllDepartment();
+        model.addAttribute("departmentList",departmentList);
         return "admin_doctor_edit_form";
     }
 
     @PostMapping("/admin/doctor/edit/{id}")
-    public String adminServiceTestEdit(@PathVariable("id") String id,Doctor doctor){
+    public String adminDoctorEdit(@PathVariable("id") String id,Doctor doctor){
         doctorDao.updateDoctor(id,doctor);
         return "redirect:/admin/user/doctor";
     }

@@ -100,7 +100,7 @@
     <div class="navbar-brand">Admin</div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">Logout</a>
+            <a th:href="@{/login}" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
@@ -200,9 +200,9 @@
                                     <div class="form-group">
                                         <label for="desig">Designation</label>
                                         <select th:field="*{designation}" class="form-control" id="desig">
-                                            <option th:value="specialist">specialist</option>
-                                            <option th:value="junior">junior</option>
-                                            <option th:value="mid_level">mid level</option>
+                                            <option th:value="Intern">Intern</option>
+                                            <option th:value="Junior">junior</option>
+                                            <option th:value="Senior">Senior</option>
                                         </select>
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="vsf">Visiting Fees:</label>
+                                        <label for="vsf">Salary:</label>
                                         <input th:field="*{salary}" type="number" class="form-control" id="vsf">
                                     </div>
                                 </div>

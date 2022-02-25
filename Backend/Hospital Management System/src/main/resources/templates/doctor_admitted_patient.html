@@ -97,10 +97,10 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <div class="navbar-brand">Patient</div>
+    <div class="navbar-brand">Doctor</div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">Logout</a>
+            <a th:href="@{/login}" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
@@ -118,16 +118,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <ul class="breadcrumb">
-                    <li>doctors</li>
-                    <li><a href="receiptionists.html">receiptionists</a></li>
-                    <li><a href="technitians.html">technitians</a></li>
-                </ul>
 
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Doctor Name</th>
+                        <th>Patient Name</th>
                         <th>Ward No</th>
                         <th>Bed No</th>
                         <th>Admitted Date</th>
@@ -137,7 +132,7 @@
                     <tbody>
                     <th:block th:each="admittedPatient:${admittedPatientList}">
                         <tr>
-                            <td>[[${admittedPatient.doctor_name}]]</td>
+                            <td>[[${admittedPatient.patient_name}]]</td>
                             <td>[[${admittedPatient.ward_no}]]</td>
                             <td>[[${admittedPatient.bed_no}]]</td>
                             <td>[[${admittedPatient.admitted_date}]]</td>

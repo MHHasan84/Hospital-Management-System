@@ -367,6 +367,44 @@ public class ReceptionistDao {
         return admittedPatientList;
     }
 
+    public List<AdmittedPatient> getAllPresentAdmittedPatient(){
+        List<AdmittedPatient> admittedPatientList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = "select * from admitted_patient where release_date is null";
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                AdmittedPatient admittedPatient=new AdmittedPatient();
+                admittedPatient.setAdmitted_id(rs.getInt("admitted_id"));
+                admittedPatient.setAdmitted_date(rs.getString("admitted_date"));
+                admittedPatient.setPatient_id(rs.getString("patient_id"));
+                admittedPatient.setDoctor_id(rs.getString("doctor_id"));
+                admittedPatient.setRelease_date(rs.getString("release_date"));
+                admittedPatient.setWard_no(rs.getString("ward_no"));
+                admittedPatient.setBed_no(rs.getString("bed_no"));
+
+                Doctor doctor= doctorDao.getDoctor(admittedPatient.getDoctor_id());
+                Patient patient= patientDao.getPatient(admittedPatient.getPatient_id());
+
+                admittedPatient.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                admittedPatient.setPatient_name(patient.getFirst_name()+" "+patient.getLast_name());
+
+
+                admittedPatientList.add(admittedPatient);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllAdmittedPatient: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return admittedPatientList;
+    }
+
     public void setReleaseDate(int admittedId,String date){
         OracleConnect oc = null;
         try {
@@ -429,6 +467,46 @@ public class ReceptionistDao {
         return appointmentList;
     }
 
+    public List<Appointment> getAllAppointmentForApprove(){
+        List<Appointment> appointmentList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = "select * from appointments where status='waiting for approval'";
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                Appointment appointment=new Appointment();
+                appointment.setAppointment_id(rs.getInt("appointment_id"));
+                appointment.setDoctor_id(rs.getString("doctor_id"));
+                appointment.setPatient_id(rs.getString("patient_id"));
+                appointment.setSchedule_id(rs.getInt("schedule_id"));
+                appointment.setAppointment_date(rs.getString("appointment_date"));
+                appointment.setStatus(rs.getString("status"));
+
+                Doctor doctor= doctorDao.getDoctor(appointment.getDoctor_id());
+                DoctorSchedule doctorSchedule= doctorDao.getDoctorSchedule(appointment.getSchedule_id());
+                appointment.setDoctor_name(doctor.getFirst_name()+" "+doctor.getLast_name());
+                appointment.setVisiting_date(doctorSchedule.getSchedule_date());
+                appointment.setVisiting_time(doctorSchedule.getStart_time()+" - "+doctorSchedule.getEnd_time());
+
+                Patient patient=new PatientDao().getPatient(appointment.getPatient_id());
+                appointment.setPatientName(patient.getFirst_name()+" "+patient.getLast_name());
+
+
+                appointmentList.add(appointment);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllAppointmentForApprove: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return appointmentList;
+    }
+
     public List<Bill> getAllBill(){
         List<Bill> billList=new ArrayList<>();
         OracleConnect oc = null;
@@ -444,6 +522,7 @@ public class ReceptionistDao {
                 bill.setBill_clear_date(rs.getString("bill_clear_date"));
                 bill.setBill_status(rs.getString("bill_status"));
                 bill.setPatient_id(rs.getString("patient_id"));
+                bill.setAmount(rs.getInt("amount"));
 
                 billList.add(bill);
             }
@@ -459,13 +538,13 @@ public class ReceptionistDao {
         return billList;
     }
 
-    public void clearBill(int billId){
+    public void clearBill(int billId,String date){
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
             String updateQuery=String.format(
-                    "update bill set bill_status='clear'" +
-                            " where bill_id=%d",billId
+                    "update bill set bill_status='clear',bill_clear_date='%s'" +
+                            " where bill_id=%d",date,billId
             );
             oc.updateDB(updateQuery);
         }
@@ -529,5 +608,30 @@ public class ReceptionistDao {
     }
 
 
+    public void updateReceptionist(String id,Receptionist receptionist){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String updateQuery=String.format(
+                    "update receptionist set address='%s',phone_no='%s',designation='%s'," +
+                            "qualification='%s',salary=%d," +
+                            "email='%s' where id='%s'",receptionist.getAddress(),
+                    receptionist.getPhone_no(),receptionist.getDesignation(),receptionist.getQualification(),
+                    receptionist.getSalary(), receptionist.getEmail(),id
+            );
+            oc.updateDB(updateQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in updateReceptionist: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

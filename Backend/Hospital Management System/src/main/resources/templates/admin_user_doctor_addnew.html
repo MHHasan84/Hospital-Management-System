@@ -100,7 +100,7 @@
     <div class="navbar-brand">Admin</div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">Logout</a>
+            <a th:href="@{/login}" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
@@ -212,9 +212,14 @@
                                     <div class="form-group">
                                         <label for="desig">Designation</label>
                                         <select th:field="*{designation}" class="form-control" id="desig">
-                                            <option th:value="specialist">specialist</option>
-                                            <option th:value="junior">junior</option>
-                                            <option th:value="mid_level">mid level</option>
+                                            <option th:value="Intern">Intern</option>
+                                            <option th:value="Fellow">Fellow</option>
+                                            <option th:value="Head_of_department">Head of department</option>
+                                            <option th:value="Chief_resident">Chief resident</option>
+                                            <option th:value="Senior_resident">Senior resident</option>
+                                            <option th:value="Junior_resident">Junior resident</option>
+                                            <option th:value="Medical_director">Medical director</option>
+                                            <option th:value="Attending_physician">Attending physician</option>
                                         </select>
                                     </div>
                                 </div>
@@ -237,13 +242,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="chamber">Chamber</label>
-                                        <select th:field="*{chamber}" class="form-control" id="chamber">
-                                            <option value=""> -- </option>
-                                            <option th:each="room : ${roomList}"
-                                                    th:value="${room.room_no}"
-                                                    th:utext="${room.room_no}">
-                                            </option>
-                                        </select>
+                                        <input th:field="*{chamber}" type="text" class="form-control" id="chamber">
                                     </div>
                                 </div>
                             </div>

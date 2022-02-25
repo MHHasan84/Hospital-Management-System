@@ -69,5 +69,17 @@ public class AdminUserTechnicianController {
         return "admin_technician_profile";
     }
 
+    @GetMapping("/admin/technician/edit/form/{id}")
+    public String adminTechnicianEditForm(@PathVariable("id") String id,Model model){
+        Technician technician= technicianDao.getTechnician(id);
+        model.addAttribute("technician",technician);
+        return "admin_technician_edit_form";
+    }
+
+    @PostMapping("/admin/technician/edit/{id}")
+    public String adminTechnicianEdit(@PathVariable("id") String id,Technician technician){
+        technicianDao.updateTechnician(id,technician);
+        return "redirect:/admin/user/technician";
+    }
 
 }

@@ -100,7 +100,7 @@
     <div class="navbar-brand">Admin</div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">Logout</a>
+            <a th:href="@{/login}" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
@@ -123,7 +123,7 @@
             <div class="col-sm-5">
                 <div class="card">
                     <div class="card-header">
-                        <b style="text-align: center;">Edit Test</b>
+                        <b style="text-align: center;">Edit Ward</b>
                     </div>
                     <div class="card-body">
                         <form th:action="'/admin/ward/edit/'+${ward.ward_no}" method="post" th:object="${ward}">

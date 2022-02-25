@@ -7,6 +7,7 @@ public class Bill {
     private String bill_create_date;
     private String bill_clear_date;
     private String bill_status;
+    private int amount;
 
     public int getBill_id() {
         return bill_id;
@@ -54,5 +55,13 @@ public class Bill {
 
     public void setBill_status(String bill_status) {
         this.bill_status = bill_status;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

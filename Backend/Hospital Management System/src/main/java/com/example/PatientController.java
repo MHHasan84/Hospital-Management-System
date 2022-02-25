@@ -34,7 +34,7 @@ public class PatientController {
 
     @GetMapping("/patient/{patient_id}/doctor_schedule/{doctor_id}")
     public String doctorSchedule(@PathVariable("patient_id") String patientId,@PathVariable("doctor_id") String doctorId,Model model){
-        List<DoctorSchedule> doctorScheduleList=doctorDao.getAllSchedule(doctorId);
+        List<DoctorSchedule> doctorScheduleList=doctorDao.getAllScheduleForChamber(doctorId);
         model.addAttribute("doctorScheduleList",doctorScheduleList);
         model.addAttribute("patientId",patientId);
         return "patient_doctor_schedule";

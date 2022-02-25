@@ -38,7 +38,7 @@ public class ReceptionistController {
     @GetMapping("/receptionist/{receptionist_id}/all_due_appointment")
     public String receptionistAllDueAppointment(@PathVariable("receptionist_id") String receptionistId, Model model){
         model.addAttribute("receptionistId",receptionistId);
-        List<Appointment> appointmentList=receptionistDao.getAllAppointment();
+        List<Appointment> appointmentList=receptionistDao.getAllAppointmentForApprove();
         model.addAttribute("appointmentList",appointmentList);
         return "receptionist_all_due_appointments";
     }
@@ -138,7 +138,7 @@ public class ReceptionistController {
     @GetMapping("/receptionist/{receptionist_id}/all_present_admitted_patient")
     public String receptionistAllPresentAdmittedPatient(@PathVariable("receptionist_id") String receptionistId, Model model){
         model.addAttribute("receptionistId",receptionistId);
-        List<AdmittedPatient> admittedPatientList=receptionistDao.getAllAdmittedPatient();
+        List<AdmittedPatient> admittedPatientList=receptionistDao.getAllPresentAdmittedPatient();
         model.addAttribute("admittedPatientList",admittedPatientList);
         return "receptionist_all_present_admitted_patient";
     }
@@ -165,7 +165,12 @@ public class ReceptionistController {
     @GetMapping("/receptionist/{receptionist_id}/clear_bill/{bill_id}")
     public String receptionistBillClear(@PathVariable("receptionist_id") String receptionistId,@PathVariable("bill_id") int billId, Model model){
         model.addAttribute("receptionistId",receptionistId);
-        receptionistDao.clearBill(billId);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String currentDate= dtf.format(now);
+
+        receptionistDao.clearBill(billId,currentDate);
         return "redirect:/receptionist/{receptionist_id}/all_bill";
     }
 

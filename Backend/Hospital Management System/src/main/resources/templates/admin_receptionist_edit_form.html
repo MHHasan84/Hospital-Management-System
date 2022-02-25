@@ -108,10 +108,10 @@
 
 <div class="sidebar">
     <a th:href="@{/admin/user/doctor}">Doctor</a>
-    <a th:href="@{/admin/user/receptionist}">Receptionist</a>
+    <a class="active" th:href="@{/admin/user/receptionist}">Receptionist</a>
     <a th:href="@{/admin/user/technician}">Technician</a>
     <a th:href="@{/admin/service/test}">Test</a>
-    <a class="active" th:href="@{/admin/service/operation}">Operation</a>
+    <a th:href="@{/admin/service/operation}">Operation</a>
     <a th:href="@{/admin/ward}">Ward</a>
     <a th:href="@{/admin/bed}">Bed</a>
 </div>
@@ -120,18 +120,46 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3"></div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                        <b style="text-align: center;">Edit Operation</b>
+                        <h3 style="text-align: center;">Receptionist's Form</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="'/admin/service/operation/edit/'+${operation.id}" method="post" th:object="${operation}">
+                        <form th:action="'/admin/receptionist/edit/'+${id}" method="post" th:object="${receptionist}">
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="fname">Operation Id:</label>
-                                        <input th:field="*{id}" disabled type="text" class="form-control" id="fname">
+                                        <label for="fname">First Name:</label>
+                                        <input disabled th:field="*{first_name}" type="text" class="form-control" id="fname">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="lname">Last Name:</label>
+                                        <input disabled th:field="*{last_name}" type="text" class="form-control" id="lname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="userid">User Id:</label>
+                                        <input disabled th:field="*{id}" type="text" class="form-control" id="userid">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="pwd">Password:</label>
+                                        <input disabled th:field="*{password}" type="password" class="form-control" id="pwd">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="add">Address:</label>
+                                        <input th:field="*{address}" type="text" class="form-control" id="add">
                                     </div>
                                 </div>
 
@@ -139,42 +167,61 @@
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="userid">Operation Name:</label>
-                                        <input th:field="*{operation_name}" type="text" class="form-control" id="userid">
+                                        <label for="phn">Phone No:</label>
+                                        <input th:field="*{phone_no}" type="text" class="form-control" id="phn">
                                     </div>
                                 </div>
-
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input th:field="*{email}" type="email" class="form-control" id="email">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="room">Room No:</label>
-                                        <input th:field="*{room_no}" type="text" class="form-control" id="room">
+                                        <label for="dob">Date of Birth:</label>
+                                        <input disabled th:field="*{date_of_birth}" type="date" class="form-control" id="dob">
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="dob">Cost:</label>
-                                        <input th:field="*{cost}" type="number" class="form-control" id="dob">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-row my-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="dept">Status</label>
-                                        <select th:field="*{status}" class="form-control" id="dept">
-                                            <option th:value="available">available</option>
-                                            <option th:value="unavailable">unavailable</option>
-
+                                        <label for="gnd">Gender</label>
+                                        <select disabled  th:field="*{gender}" class="form-control" id="gnd">
+                                            <option th:value="Male">Male</option>
+                                            <option th:value="Female">Female</option>
                                         </select>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="desig">Designation</label>
+                                        <select th:field="*{designation}" class="form-control" id="desig">
+                                            <option th:value="Intern">Intern</option>
+                                            <option th:value="Junior">junior</option>
+                                            <option th:value="Senior">Senior</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="qlf">Qualification:</label>
+                                        <input th:field="*{qualification}" type="text" class="form-control" id="qlf">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="vsf">Salary:</label>
+                                        <input th:field="*{salary}" type="number" class="form-control" id="vsf">
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-dark btn-block">Submit</button>
                             <button class="btn btn-dark btn-block">Cancel</button>
@@ -187,6 +234,7 @@
     </div>
 
 </div>
+
 
 </body>
 

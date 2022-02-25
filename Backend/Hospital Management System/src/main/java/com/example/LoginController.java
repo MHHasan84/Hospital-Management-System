@@ -39,16 +39,19 @@ public class LoginController {
             return "login_form";
         }
         if(user1.getUsertype().equals("0")){
-            return "redirect:/admin/dashboard";
+            return "redirect:/admin/user/doctor";
         }
         if(user1.getUsertype().equals("1")){
-            return "redirect:/doctor/profile/"+user.getId();
+            return "redirect:/doctor/"+user.getId()+"/profile";
         }
         if(user1.getUsertype().equals("2")){
-            return "redirect:/patient/profile/"+user.getId();
+            return "redirect:/patient/"+user.getId()+"/profile";
         }
         if(user1.getUsertype().equals("3")){
-            return "redirect:/technitian/profile/"+user.getId();
+            return "redirect:/technician/"+user.getId()+"/profile";
+        }
+        if(user1.getUsertype().equals("4")){
+            return "redirect:/receptionist/"+user.getId()+"/profile";
         }
         return "login_form";
     }
@@ -56,6 +59,18 @@ public class LoginController {
     @GetMapping("/login")
     public String loginForm(User user){
         return "login_form";
+    }
+
+    @GetMapping("/sign_up/form")
+    public String signUpForm(Model model){
+        model.addAttribute("patient",new Patient());
+        return "sign_up_form";
+    }
+
+    @PostMapping("/sign_up")
+    public String signUp(Patient patient){
+        userDao2.insertPatient(patient);
+        return "redirect:/login";
     }
 
 

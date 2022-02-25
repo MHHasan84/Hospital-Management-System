@@ -100,7 +100,7 @@
     <div class="navbar-brand">Admin</div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">Logout</a>
+            <a th:href="@{/login}" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
@@ -126,18 +126,18 @@
                         <h3 style="text-align: center;">Doctor's Form</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/admin/add_doctor}" method="post" th:object="${doctor}">
+                        <form th:action="'/admin/doctor/edit/'+${id}" method="post" th:object="${doctor}">
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="fname">First Name:</label>
-                                        <input th:field="*{first_name}" type="text" class="form-control" id="fname">
+                                        <input disabled th:field="*{first_name}" type="text" class="form-control" id="fname">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="lname">Last Name:</label>
-                                        <input th:field="*{last_name}" type="text" class="form-control" id="lname">
+                                        <input disabled th:field="*{last_name}" type="text" class="form-control" id="lname">
                                     </div>
                                 </div>
                             </div>
@@ -145,13 +145,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="userid">User Id:</label>
-                                        <input th:field="*{id}" type="text" class="form-control" id="userid">
+                                        <input disabled th:field="*{id}" type="text" class="form-control" id="userid">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input th:field="*{password}" type="password" class="form-control" id="pwd">
+                                        <input disabled th:field="*{password}" type="password" class="form-control" id="pwd">
                                     </div>
                                 </div>
                             </div>
@@ -182,13 +182,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="dob">Date of Birth:</label>
-                                        <input th:field="*{date_of_birth}" type="date" class="form-control" id="dob">
+                                        <input disabled th:field="*{date_of_birth}" type="date" class="form-control" id="dob">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="gnd">Gender</label>
-                                        <select  th:field="*{gender}" class="form-control" id="gnd">
+                                        <select disabled  th:field="*{gender}" class="form-control" id="gnd">
                                             <option th:value="Male">Male</option>
                                             <option th:value="Female">Female</option>
                                         </select>
@@ -212,9 +212,14 @@
                                     <div class="form-group">
                                         <label for="desig">Designation</label>
                                         <select th:field="*{designation}" class="form-control" id="desig">
-                                            <option th:value="specialist">specialist</option>
-                                            <option th:value="junior">junior</option>
-                                            <option th:value="mid_level">mid level</option>
+                                            <option th:value="Intern">Intern</option>
+                                            <option th:value="Fellow">Fellow</option>
+                                            <option th:value="Head_of_department">Head of department</option>
+                                            <option th:value="Chief_resident">Chief resident</option>
+                                            <option th:value="Senior_resident">Senior resident</option>
+                                            <option th:value="Junior_resident">Junior resident</option>
+                                            <option th:value="Medical_director">Medical director</option>
+                                            <option th:value="Attending_physician">Attending physician</option>
                                         </select>
                                     </div>
                                 </div>
@@ -222,8 +227,8 @@
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label th:field="*{qualification}" for="qlf">Qualification:</label>
-                                        <input type="text" class="form-control" id="qlf">
+                                        <label for="qlf">Qualification:</label>
+                                        <input th:field="*{qualification}" type="text" class="form-control" id="qlf">
                                     </div>
                                 </div>
                             </div>
@@ -237,13 +242,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="chamber">Chamber</label>
-                                        <select th:field="*{chamber}" class="form-control" id="chamber">
-                                            <option value=""> -- </option>
-                                            <option th:each="room : ${roomList}"
-                                                    th:value="${room.room_no}"
-                                                    th:utext="${room.room_no}">
-                                            </option>
-                                        </select>
+                                        <input th:field="*{chamber}" type="text" class="form-control" id="chamber">
                                     </div>
                                 </div>
                             </div>

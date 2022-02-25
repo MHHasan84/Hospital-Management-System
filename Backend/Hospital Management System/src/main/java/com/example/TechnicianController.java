@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -35,6 +37,11 @@ public class TechnicianController {
     }
     @PostMapping("/technician/{technician_id}/make_test_result/{sample_no}")
     public String technicianTestMakeResult(@PathVariable("technician_id") String technicianId,@PathVariable("sample_no") int sampleNo, PatientTest patientTest){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String currentDate= dtf.format(now);
+
+        patientTest.setResult_date(currentDate);
         technicianDao.editTestResult(sampleNo,patientTest);
         return "redirect:/technician/"+technicianId+"/test";
     }

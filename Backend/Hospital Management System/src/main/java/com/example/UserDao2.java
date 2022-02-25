@@ -152,5 +152,38 @@ public class UserDao2 {
         }
     }
 
+    public boolean insertPatient(Patient patient){
+        boolean patient_insert_succeed=false;
+        UserDao2 userDao2=new UserDao2();
+        boolean user_insert_succeed=userDao2.addUser(patient.getId(), patient.getPassword(), "2");
+        if(!user_insert_succeed){
+            return false;
+        }
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+
+            String insertQuery = String.format(
+                    "insert into patients(id,first_name,last_name,address,gender,phone_no,email,date_of_birth) values ('%s', '%s', '%s'," +
+                            " '%s', '%s', '%s', '%s', '%s')"
+                    , patient.getId(),patient.getFirst_name(),patient.getLast_name(),patient.getAddress(),
+                    patient.getGender(),patient.getPhone_no(),patient.getEmail(),
+                    patient.getDate_of_birth());
+            oc.updateDB(insertQuery);
+            patient_insert_succeed=true;
+        }
+        catch (Exception e) {
+            System.out.println("Exception in addPatient: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return patient_insert_succeed;
+    }
 
 }

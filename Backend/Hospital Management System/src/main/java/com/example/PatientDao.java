@@ -261,6 +261,7 @@ public class PatientDao {
                 bill.setBill_clear_date(rs.getString("bill_clear_date"));
                 bill.setBill_status(rs.getString("bill_status"));
                 bill.setPatient_id(rs.getString("patient_id"));
+                bill.setAmount(rs.getInt("amount"));
 
 
                 billList.add(bill);
@@ -290,7 +291,7 @@ public class PatientDao {
                 prescription.setMedicine(rs.getString("medicine"));
                 prescription.setTest(rs.getString("test"));
                 prescription.setOperation(rs.getString("operation"));
-                prescription.setProblem(rs.getString("others"));
+                prescription.setOthers(rs.getString("others"));
             }
         } catch (Exception e) {
             System.out.println("Exception in getPrescription: " + e);
@@ -303,4 +304,5 @@ public class PatientDao {
         }
         return prescription;
     }
+
 }

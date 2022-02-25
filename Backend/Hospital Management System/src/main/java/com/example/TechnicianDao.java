@@ -305,4 +305,30 @@ public class TechnicianDao {
         }
         return patientTest;
     }
+
+    public void updateTechnician(String id,Technician technician){
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String updateQuery=String.format(
+                    "update technicians set address='%s',phone_no='%s',designation='%s'," +
+                            "qualification='%s',salary=%d," +
+                            "email='%s' where id='%s'",technician.getAddress(),
+                    technician.getPhone_no(),technician.getDesignation(),technician.getQualification(),
+                    technician.getSalary(), technician.getEmail(),id
+            );
+            oc.updateDB(updateQuery);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in updateTechnician: " + e);
+        }
+        finally {
+            try {
+                oc.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

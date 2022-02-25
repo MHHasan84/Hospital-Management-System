@@ -100,7 +100,7 @@
     <div class="navbar-brand">Patient</div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="#" class="nav-link">Logout</a>
+            <a th:href="@{/login}" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
@@ -119,17 +119,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <ul class="breadcrumb">
-                    <li>doctors</li>
-                    <li><a href="receiptionists.html">receiptionists</a></li>
-                    <li><a href="technitians.html">technitians</a></li>
-                </ul>
 
                 <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Bill Id</th>
                         <th>Bill Type</th>
+                        <th>Amount</th>
                         <th>Bill Create Date</th>
                         <th>Bill Clear Date</th>
                         <th>Bill Status</th>
@@ -140,6 +136,7 @@
                         <tr>
                             <td>[[${bill.bill_id}]]</td>
                             <td>[[${bill.bill_type}]]</td>
+                            <td>[[${bill.amount}]]</td>
                             <td>[[${bill.bill_create_date}]]</td>
                             <td>[[${bill.bill_clear_date}]]</td>
                             <td>[[${bill.bill_status}]]</td>

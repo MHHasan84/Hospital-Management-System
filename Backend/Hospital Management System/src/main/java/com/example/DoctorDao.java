@@ -171,6 +171,36 @@ public class DoctorDao {
         return doctorScheduleList;
     }
 
+    public List<DoctorSchedule> getAllScheduleForChamber(String doctorId){
+        List<DoctorSchedule> doctorScheduleList=new ArrayList<>();
+        OracleConnect oc = null;
+        try {
+            oc = new OracleConnect();
+            String query = String.format("select * from doctor_schedule where doctor_id='%s' and place='Chamber'",doctorId);
+            ResultSet rs = oc.searchDB(query);
+            while (rs.next()){
+                DoctorSchedule doctorSchedule=new DoctorSchedule();
+                doctorSchedule.setId(rs.getInt("id"));
+                doctorSchedule.setDoctor_id(doctorId);
+                doctorSchedule.setSchedule_date(rs.getString("schedule_date"));
+                doctorSchedule.setStart_time(rs.getString("start_time"));
+                doctorSchedule.setEnd_time(rs.getString("end_time"));
+                doctorSchedule.setPlace(rs.getString("place"));
+
+                doctorScheduleList.add(doctorSchedule);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception in getAllSchedule: " + e);
+        } finally {
+            try {
+                oc.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return doctorScheduleList;
+    }
+
     public DoctorSchedule getDoctorSchedule(int scheduleId){
         DoctorSchedule doctorSchedule=new DoctorSchedule();
         OracleConnect oc = null;
@@ -249,7 +279,7 @@ public class DoctorDao {
             oc = new OracleConnect();
             String updateQuery=String.format(
                     "update doctors set address='%s',phone_no='%s',designation='%s'," +
-                            "qualification=%s,chamber='%s',visiting_fee='%s'," +
+                            "qualification='%s',chamber='%s',visiting_fee=%d," +
                             "email='%s' where id='%s'",doctor.getAddress(),
                     doctor.getPhone_no(),doctor.getDesignation(),doctor.getQualification(),
                     doctor.getChamber(), doctor.getVisiting_fee(), doctor.getEmail(),id
@@ -322,7 +352,7 @@ public class DoctorDao {
                 prescription.setMedicine(rs.getString("medicine"));
                 prescription.setTest(rs.getString("test"));
                 prescription.setOperation(rs.getString("operation"));
-                prescription.setProblem(rs.getString("others"));
+                prescription.setOthers(rs.getString("others"));
             }
         } catch (Exception e) {
             System.out.println("Exception in getPrescription: " + e);
@@ -340,6 +370,12 @@ public class DoctorDao {
         OracleConnect oc = null;
         try {
             oc = new OracleConnect();
+            String updateQuery1=String.format(
+                    "update appointments set status='visited'" +
+                            " where appointment_id=%d",appointmentId
+            );
+            oc.updateDB(updateQuery1);
+
             String query = String.format("select * from prescription where appointment_id=%d",appointmentId);
             ResultSet rs = oc.searchDB(query);
             if (rs.next()){

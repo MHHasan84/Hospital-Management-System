@@ -109,7 +109,7 @@ public class BedDao {
         try {
             oc = new OracleConnect();
             String updateQuery=String.format(
-                    "update bed set ward_no='%s'",bed.getWard_no()
+                    "update bed set ward_no='%s' where bed_no='%s'",bed.getWard_no(),bed_no
             );
             oc.updateDB(updateQuery);
         }

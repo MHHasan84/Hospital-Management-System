@@ -69,5 +69,17 @@ public class AdminUserReceptionistController {
         return "admin_receptionist_profile";
     }
 
+    @GetMapping("/admin/receptionist/edit/form/{id}")
+    public String adminReceptionistEditForm(@PathVariable("id") String id,Model model){
+        Receptionist receptionist= receptionistDao.getReceptionist(id);
+        model.addAttribute("receptionist",receptionist);
+        return "admin_receptionist_edit_form";
+    }
+
+    @PostMapping("/admin/receptionist/edit/{id}")
+    public String adminReceptionistEdit(@PathVariable("id") String id,Receptionist receptionist){
+        receptionistDao.updateReceptionist(id,receptionist);
+        return "redirect:/admin/user/receptionist";
+    }
 
 }
